@@ -11,43 +11,31 @@ import {
 	StyleSheet,
 	Text,
 	View,
-	TextInput,
-	ScrollView,
-	Image,
+	ListView,
 } from 'react-native';
 
 export default class ReactNative_intelliSchool extends Component {
-	render(){
-		return(
-			<ScrollView>
-				<Text style={{fontSize:30}}>Scroll me plz</Text>
-				<Image source={require('./img/favicon.png')}></Image>
-				<Image source={require('./img/favicon.png')}></Image>
-				<Image source={require('./img/favicon.png')}></Image>
-				<Image source={require('./img/favicon.png')}></Image>
-				<Image source={require('./img/favicon.png')}></Image>
-				<Image source={require('./img/favicon.png')}></Image>
-				<Image source={require('./img/favicon.png')}></Image>
-				<Text style={{fontSize:30}}>If you like</Text>
-				<Image source={require('./img/favicon.png')}></Image>
-				<Image source={require('./img/favicon.png')}></Image>
-				<Image source={require('./img/favicon.png')}></Image>
-				<Image source={require('./img/favicon.png')}></Image>
-				<Image source={require('./img/favicon.png')}></Image>
-				<Image source={require('./img/favicon.png')}></Image>
-				<Image source={require('./img/favicon.png')}></Image>
-				<Image source={require('./img/favicon.png')}></Image>
-				<Text style={{fontSize:30}}>Scrolling down</Text>
-				<Image source={require('./img/favicon.png')}></Image>
-				<Image source={require('./img/favicon.png')}></Image>
-				<Image source={require('./img/favicon.png')}></Image>
-				<Image source={require('./img/favicon.png')}></Image>
-				<Image source={require('./img/favicon.png')}></Image>
-				<Image source={require('./img/favicon.png')}></Image>
-				<Image source={require('./img/favicon.png')}></Image>
-				<Image source={require('./img/favicon.png')}></Image>
-				<Image source={require('./img/favicon.png')}></Image>
-			</ScrollView>
+	constructor(props){
+		super(props);
+		const ds = new ListView.DataSource({
+			rowHasChanged: (r1, r2) => r1 !== r2
+		});
+		this.state = {
+			dataSource: ds.cloneWithRows([
+				'wujunchuan', 'Joel', 'Java', 'Javascript', 'Jackson', 'Judile', 'Devie',
+				'haha','hehe','fuck','enen'
+			])
+		};
+	}
+	render() {
+		return (
+			<View style={{paddingTop: 22,flex:1}}>
+				<ListView
+					dataSource={this.state.dataSource}
+					renderRow={(rowData) => <Text style={{fontSize:50}}>{rowData}</Text>}
+					showVerticalScrollIndicator={false}
+				/>
+			</View>
 		);
 	}
 }
