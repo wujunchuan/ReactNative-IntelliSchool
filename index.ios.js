@@ -17,10 +17,15 @@ import {
 export default class ReactNative_intelliSchool extends Component {
 	render() {
 		return (
-			<View style={{flex: 1, flexDirection: 'column'}}>{/*默认值就是column*/}
-				<View style={{flex: 1, backgroundColor: 'powderblue'}}></View>
-				<View style={{flex: 2, backgroundColor: 'skyblue'}}></View>
-				<View style={{flex: 3, backgroundColor: 'steelblue'}}></View>
+			<View style={{
+				flex: 1,
+				flexDirection: 'column',
+				justifyContent:'center',
+				alignItems:'stretch'
+			}}>{/*默认值就是column*/}
+				<View style={{height:50, backgroundColor: 'powderblue'}}></View>
+				<View style={{height:50, backgroundColor: 'skyblue'}}></View>
+				<View style={{height:50, backgroundColor: 'steelblue'}}></View>
 			</View>
 		);
 	}
