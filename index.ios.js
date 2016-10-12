@@ -12,51 +12,28 @@ import {
 	View
 } from 'react-native';
 
-class Bink extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {showText: true};
-		setInterval(()=> {
-			this.setState({showText: !this.state.showText})
-		}, 1000);
-	}
-
-	render() {
-		let display = this.state.showText ? this.props.text : ' ';//如果showText为假 就不现实字符串
-		return(
-			<Text>{display}</Text>
-		)
-	}
-}
 
 export default class ReactNative_intelliSchool extends Component {
 	render() {
 		return (
 			<View>
-				<Bink text="Hello world"/>
-				<Bink text="hahahaha"/>
-				<Bink text="Hello world"/>
+				<Text style={styles.red}>Just Red</Text>
+				<Text style={styles.bigblue}>Just bigblue</Text>
+				<Text style={[styles.bigblue,styles.red]}>bigblue then red</Text>
+				<Text style={[styles.red,styles.bigblue]}>red then bigblue</Text>
 			</View>
 		);
 	}
 }
 
 const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		justifyContent: 'center',
-		alignItems: 'center',
-		backgroundColor: '#F5FCFF',
+	red:{
+		color:"red"
 	},
-	welcome: {
-		fontSize: 20,
-		textAlign: 'center',
-		margin: 10,
-	},
-	instructions: {
-		textAlign: 'center',
-		color: '#333333',
-		marginBottom: 5,
+	bigblue:{
+		color:"blue",
+		fontWeight:"bold",
+		fontSize:30,
 	},
 });
 
