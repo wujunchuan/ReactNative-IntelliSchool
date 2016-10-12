@@ -17,23 +17,23 @@ import {
 export default class ReactNative_intelliSchool extends Component {
 	render() {
 		return (
-			<View style={{height:300}}>
-				<View style={{flex:1,backgroundColor:'powderblue'}}></View>
-				<View style={{flex:2,backgroundColor:'skyblue'}}></View>
-				<View style={{flex:3,backgroundColor:'steelblue'}}></View>
+			<View style={{flex: 1, flexDirection: 'column'}}>{/*默认值就是column*/}
+				<View style={{flex: 1, backgroundColor: 'powderblue'}}></View>
+				<View style={{flex: 2, backgroundColor: 'skyblue'}}></View>
+				<View style={{flex: 3, backgroundColor: 'steelblue'}}></View>
 			</View>
 		);
 	}
 }
 
 const styles = StyleSheet.create({
-	red:{
-		color:"red"
+	red: {
+		color: "red"
 	},
-	bigblue:{
-		color:"blue",
-		fontWeight:"bold",
-		fontSize:30,
+	bigblue: {
+		color: "blue",
+		fontWeight: "bold",
+		fontSize: 30,
 	},
 });
 
