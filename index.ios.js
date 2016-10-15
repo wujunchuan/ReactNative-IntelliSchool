@@ -80,24 +80,19 @@ class ReactNative_intelliSchool extends Component {
 		};
 	}
 
-	componentWillMount() {
-		// https://github.com/facebook/react-native/issues/1403 prevents this to work for initial load
-		Icon.getImageSource('ios-settings', 30).then((source) => this.setState({ gearIcon: source }));
-	}
+
 
 	_renderContent(color, pageText) {
-		if (!this.state.gearIcon) {
-			return false;
-		}
 		const props = { color, pageText };
 		return (
 			<NavigatorIOS
+				barTintColor='#5F97F6'
+				titleTextColor='white'
 				style={styles.navigator}
 				initialRoute={{
 					component: ColoredView,
 					passProps: props,
 					title: pageText,
-					rightButtonIcon: this.state.gearIcon,
 				}}
 			/>
 		);
