@@ -1,10 +1,13 @@
+`use strict`;
 import React, { Component } from 'react';
 import {
 	AppRegistry,
+	StyleSheet,
+	View,
+	Text,
 } from 'react-native';
 
-import Icon from 'react-native-vector-icons/Ionicons';
-import  TabBar from './app/component/TabBar';
+import GuideNavigator from './app/component/GuideNavigator'
 
 class ReactNative_intelliSchool extends Component {
 	constructor(props) {
@@ -13,7 +16,8 @@ class ReactNative_intelliSchool extends Component {
 
 	render() {
 		return (
-			<TabBar/>
+			/*<TabBar/>*/
+			<GuideNavigator/>
 		);
 	}
 }
