@@ -25,3 +25,24 @@
 3. 执行`react-native run-ios`即可运行ios版本
 
   > 如果是运行Android版本,则执行`react-native run-android`
+  
+# 开发工具
+
+使用`webStrom` 作为开发工具.
+
+> 因为`webStrom`对JSX支持很好,但是默认是使用ES5/6的语法,所以我们需要进入在设置中设置
+> ![设置JSX为语言类型](http://git.oschina.net/uploads/images/2016/1016/205629_f2a4cbf3_541293.png "设置JSX为图片类型")
+
+### 补充JSX语法提示
+
+嫌弃JSX语法提示不够多的,可以尝试使用这个开源库
+`git clone https://github.com/virtoolswebplayer/ReactNative-LiveTemplate`
+clone之后`file -> import settings -> ReactNative.jar`
+
+#### 组件提示
+
+直接输入组件 或 Api 名称的首字母, 比如想要 View ,只要输入 V自动提示代码里就会看到 View
+
+#### StyleSheet提示
+
+按下`Command+J`然后输入属性名的首字母即可
