@@ -1,3 +1,8 @@
+/**
+ * Created by JohnTrump on 10/16/16.
+ * Description: 小吐槽的组件
+ *
+ */
 `use strict`;
 import React, { Component } from 'react';
 import {
@@ -8,7 +13,7 @@ import {
 	TouchableOpacity,
 } from 'react-native';
 
-class Personal extends Component {
+class Bbs extends Component {
 	constructor(props){
 		super(props);
 	}
@@ -16,7 +21,7 @@ class Personal extends Component {
 		return (
 			<View style={styles.tabContent}>
 				<TouchableOpacity onPress={this._navigateToSubview}>
-					<View style={styles.button}><Text style={styles.buttonText}>很多个人配置</Text></View>
+					<View style={styles.button}><Text style={styles.buttonText}>很多小吐槽</Text></View>
 				</TouchableOpacity>
 			</View>
 		)
@@ -43,4 +48,4 @@ var styles = StyleSheet.create({
 	},
 });
 
-module.exports = Personal;
+module.exports = Bbs;

@@ -1,10 +1,15 @@
+/**
+ * Created by JohnTrump on 10/16/16.
+ * Description: IOS平台下的主页底部Tab标签
+ *
+ */
 `use strict`;
 import React, { Component } from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
-import News from '../News';
-import Bbs from '../Bbs';
-import Service from '../Service';
-import Personal from '../Personal';
+import News from '../component/News';
+import Bbs from '../component/Bbs';
+import Service from '../component/Service';
+import Personal from '../component/Personal';
 
 import {
 	StyleSheet,

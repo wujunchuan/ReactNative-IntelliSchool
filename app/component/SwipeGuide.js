@@ -1,3 +1,9 @@
+/**
+ * Created by JohnTrump on 10/16/16.
+ * Description: 首次开启APP的轮播组件
+ *
+ */
+"use strict";
 import React,{Component} from 'react';
 import {
 	StyleSheet,
@@ -6,7 +12,7 @@ import {
 } from 'react-native';
 
 import Swiper from 'react-native-swiper';
-import TabBar from '../component/TabBar'
+import TabBar from '../ios/TabBar'
 var styles = StyleSheet.create({
 	wrapper: {
 	},

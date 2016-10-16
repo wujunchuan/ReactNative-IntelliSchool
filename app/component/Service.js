@@ -1,3 +1,8 @@
+/**
+ * Created by JohnTrump on 10/16/16.
+ * Description: 便捷服务组件
+ *
+ */
 `use strict`;
 import React, { Component } from 'react';
 import {
@@ -8,7 +13,7 @@ import {
 	TouchableOpacity,
 } from 'react-native';
 
-class NewsDetail extends Component{
+class Bbs extends Component {
 	constructor(props){
 		super(props);
 	}
@@ -16,10 +21,13 @@ class NewsDetail extends Component{
 		return (
 			<View style={styles.tabContent}>
 				<TouchableOpacity onPress={this._navigateToSubview}>
-					<View style={styles.button}><Text style={styles.buttonText}>新闻详情</Text></View>
+					<View style={styles.button}><Text style={styles.buttonText}>很多便利服务</Text></View>
 				</TouchableOpacity>
 			</View>
-		);
+		)
+	};
+	_navigateToSubview(){
+		alert('On right button press!');
 	}
 }
 
@@ -39,4 +47,5 @@ var styles = StyleSheet.create({
 		justifyContent: 'center',
 	},
 });
-module.exports = NewsDetail;
+
+module.exports = Bbs;

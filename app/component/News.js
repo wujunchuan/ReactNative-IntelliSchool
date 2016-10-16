@@ -1,3 +1,8 @@
+/**
+ * Created by JohnTrump on 10/16/16.
+ * Description: 学院新闻的组件
+ *
+ */
 `use strict`;
 import React, { Component } from 'react';
 import {
@@ -7,23 +12,26 @@ import {
 	ScrollView,
 	TouchableOpacity,
 } from 'react-native';
+import NewsDetail from './NewsDetail';
 
-class Bbs extends Component {
+class News extends Component {
 	constructor(props){
 		super(props);
 	}
 	render(){
 		return (
 			<View style={styles.tabContent}>
-				<TouchableOpacity onPress={this._navigateToSubview}>
-					<View style={styles.button}><Text style={styles.buttonText}>很多小吐槽</Text></View>
+				<TouchableOpacity onPress={()=>{
+					this.props.navigator.push({
+						component:NewsDetail,
+						title: "新闻详情",
+					})
+				}}>{/*this指向神坑*/}
+					<View style={styles.button}><Text style={styles.buttonText}>很多新闻</Text></View>
 				</TouchableOpacity>
 			</View>
 		)
 	};
-	_navigateToSubview(){
-		alert('On right button press!');
-	}
 }
 
 var styles = StyleSheet.create({
@@ -43,4 +51,4 @@ var styles = StyleSheet.create({
 	},
 });
 
-module.exports = Bbs;
+module.exports = News;

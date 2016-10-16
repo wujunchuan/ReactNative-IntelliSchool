@@ -1,4 +1,9 @@
-`use strict`;
+/**
+ * Created by JohnTrump on 10/16/16.
+ * Description: 首次开启APP的轮播组件的导航器
+ *
+ */
+"use strict";
 import React, { Component } from 'react';
 import {
 	StyleSheet,

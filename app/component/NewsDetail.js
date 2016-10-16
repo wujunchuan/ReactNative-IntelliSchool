@@ -1,3 +1,8 @@
+/**
+ * Created by JohnTrump on 10/16/16.
+ * Description: 点击学院新闻的具体item后进入的学院新闻详情页面
+ *
+ */
 `use strict`;
 import React, { Component } from 'react';
 import {
@@ -8,7 +13,7 @@ import {
 	TouchableOpacity,
 } from 'react-native';
 
-class Bbs extends Component {
+class NewsDetail extends Component{
 	constructor(props){
 		super(props);
 	}
@@ -16,13 +21,10 @@ class Bbs extends Component {
 		return (
 			<View style={styles.tabContent}>
 				<TouchableOpacity onPress={this._navigateToSubview}>
-					<View style={styles.button}><Text style={styles.buttonText}>很多便利服务</Text></View>
+					<View style={styles.button}><Text style={styles.buttonText}>新闻详情</Text></View>
 				</TouchableOpacity>
 			</View>
-		)
-	};
-	_navigateToSubview(){
-		alert('On right button press!');
+		);
 	}
 }
 
@@ -42,5 +44,4 @@ var styles = StyleSheet.create({
 		justifyContent: 'center',
 	},
 });
-
-module.exports = Bbs;
+module.exports = NewsDetail;

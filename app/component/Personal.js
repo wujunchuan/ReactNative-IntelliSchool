@@ -1,3 +1,8 @@
+/**
+ * Created by JohnTrump on 10/16/16.
+ * Description: 个人中心的组件
+ *
+ */
 `use strict`;
 import React, { Component } from 'react';
 import {
@@ -7,26 +12,23 @@ import {
 	ScrollView,
 	TouchableOpacity,
 } from 'react-native';
-import NewsDetail from './NewsDetail';
 
-class News extends Component {
+class Personal extends Component {
 	constructor(props){
 		super(props);
 	}
 	render(){
 		return (
 			<View style={styles.tabContent}>
-				<TouchableOpacity onPress={()=>{
-					this.props.navigator.push({
-						component:NewsDetail,
-						title: "新闻详情",
-					})
-				}}>{/*this指向神坑*/}
-					<View style={styles.button}><Text style={styles.buttonText}>很多新闻</Text></View>
+				<TouchableOpacity onPress={this._navigateToSubview}>
+					<View style={styles.button}><Text style={styles.buttonText}>很多个人配置</Text></View>
 				</TouchableOpacity>
 			</View>
 		)
 	};
+	_navigateToSubview(){
+		alert('On right button press!');
+	}
 }
 
 var styles = StyleSheet.create({
@@ -46,4 +48,4 @@ var styles = StyleSheet.create({
 	},
 });
 
-module.exports = News;
+module.exports = Personal;
