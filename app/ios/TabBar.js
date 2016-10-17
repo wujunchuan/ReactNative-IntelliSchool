@@ -22,34 +22,6 @@ const BBS_TAB = 'messageTab';
 const SERVICE_TAB = 'discoverTab';
 const ME_TAB = 'meTab';
 
-/**
- * 组件样式
- */
-const styles = StyleSheet.create({
-	navigator: {
-		flex: 1,
-	},
-	container: {
-		flex: 1,
-		justifyContent: 'center',
-		alignItems: 'center',
-		backgroundColor: '#F5FCFF',
-	},
-	tabContent: {
-		flex: 1,
-		alignItems: 'center',
-		justifyContent: 'center',
-	},
-	tabText: {
-		color: 'white',
-	},
-	button: {
-		marginTop: 20,
-		padding: 8,
-		backgroundColor: 'white',
-		borderRadius: 4,
-	},
-});
 
 /**
  * 定义TabBar组件
@@ -175,4 +147,34 @@ class TabBar extends Component {
 		);
 	}
 }
+
+/**
+ * 组件样式
+ */
+const styles = StyleSheet.create({
+	navigator: {
+		flex: 1,
+	},
+	container: {
+		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center',
+		backgroundColor: '#F5FCFF',
+	},
+	tabContent: {
+		flex: 1,
+		alignItems: 'center',
+		justifyContent: 'center',
+	},
+	tabText: {
+		color: 'white',
+	},
+	button: {
+		marginTop: 20,
+		padding: 8,
+		backgroundColor: 'white',
+		borderRadius: 4,
+	},
+});
+
 module.exports = TabBar;

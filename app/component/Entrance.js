@@ -13,26 +13,6 @@ import {
 import Icon from 'react-native-vector-icons/Ionicons';
 import Utils from '../utils'
 const AnimatedIcon = Animated.createAnimatedComponent(Icon);//创建Icon动画组件
-/**
- * 样式
- */
-const styles = StyleSheet.create({
-	entrance:{
-		position:"absolute",
-		top:0, left:0,
-		height:Utils.size.height,
-		width:Utils.size.width,
-		backgroundColor:"#1b95e0",
-		alignItems:"center",
-		justifyContent:"center"
-	},
-	twitter:{
-		color:"#fff",
-		position:"relative",
-		top:-20,
-		textAlign: "center"
-	},
-});
 
 class Entrance extends Component{
 	static propTypes = {
@@ -91,4 +71,24 @@ class Entrance extends Component{
 
 }
 
+/**
+ * 样式
+ */
+const styles = StyleSheet.create({
+	entrance:{
+		position:"absolute",
+		top:0, left:0,
+		height:Utils.size.height,
+		width:Utils.size.width,
+		backgroundColor:"#1b95e0",
+		alignItems:"center",
+		justifyContent:"center"
+	},
+	twitter:{
+		color:"#fff",
+		position:"relative",
+		top:-20,
+		textAlign: "center"
+	},
+});
 module.exports = Entrance;

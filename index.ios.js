@@ -12,15 +12,6 @@ import Entrance from './app/component/Entrance';
 import Util from './app/utils';
 import TabBar from  './app/ios/TabBar'
 
-var styles = StyleSheet.create({
-	secondView:{
-		position:'absolute',
-		width:Util.size.width,
-		height:Util.size.height,
-		backgroundColor: 'green'
-	}
-})
-
 class ReactNative_intelliSchool extends Component {
 	constructor(props) {
 		super(props);
@@ -45,6 +36,14 @@ class ReactNative_intelliSchool extends Component {
 	}
 }
 
+var styles = StyleSheet.create({
+	secondView:{
+		position:'absolute',
+		width:Util.size.width,
+		height:Util.size.height,
+		backgroundColor: 'green'
+	}
+})
 
 AppRegistry.registerComponent('ReactNative_intelliSchool', () => ReactNative_intelliSchool);
 // AppRegistry.registerComponent('ReactNative_intelliSchool', () => GuideNavigator);
