@@ -1,10 +1,11 @@
 `use strict`;
-import React, { Component } from 'react';
+import React,{ Component } from 'react';
 import {
 	AppRegistry,
 	StyleSheet,
 	View,
 	Text,
+	StatusBar
 } from 'react-native';
 
 import GuideNavigator from './app/component/GuideNavigator'
@@ -12,12 +13,17 @@ import Entrance from './app/component/Entrance';
 import Util from './app/utils';
 import TabBar from  './app/ios/TabBar'
 
+
 class ReactNative_intelliSchool extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			show:true
 		};
+	}
+
+	componentDidMount() {
+		StatusBar.setBarStyle(1); //What's the fuck !? See https://github.com/fbsamples/f8app/issues/85
 	}
 	_hideEntrance(){
 		this.setState({
