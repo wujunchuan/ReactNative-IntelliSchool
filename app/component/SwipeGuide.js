@@ -8,7 +8,8 @@ import React, {Component} from 'react';
 import {
     StyleSheet,
     View,
-    Text
+    Text,
+    AsyncStorage
 } from 'react-native';
 
 import Swiper from 'react-native-swiper';
@@ -35,7 +36,21 @@ class SwipeGuide extends Component {
                 </View>
                 <View style={styles.slide3}>
                     <Text style={styles.text} onPress={()=> {
-                        {/*使用resetTo避免进入App还可以后退,如果是pop的话,可以再次压入栈*/
+                        {
+                            /*使用resetTo避免进入App还可以后退,如果是pop的话,可以再次压入栈*/
+                            console.log("press and resetTo..");
+                            /*Notice:AsyncStorage只能存储String
+                             *See:
+                             * http://stackoverflow.com/questions/35596187/react-native-asyncstorage-storing-values-other-than-strings
+                             * */
+                            AsyncStorage.setItem("isfirst","false")
+                                .then(()=>{
+                                    console.log("存储成功");
+                                })
+                                .catch((error)=>{
+                                    console.log("捕获异常");
+                                    console.log(error);
+                                }).done();
                         }
                         this.props.navigator.resetTo({
                             component: TabBar,

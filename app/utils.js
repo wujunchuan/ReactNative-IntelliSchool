@@ -1,9 +1,8 @@
 /**
  * Created by JohnTrump on 10/16/16.
- * Description:
+ * Description:工具类,用来封装常用的函数方法
  *
- */// obtained from react native tutorials
-
+ */
 import React from 'react';
 import {PixelRatio} from 'react-native';
 import Dimensions from 'Dimensions';
@@ -25,13 +24,13 @@ const Util = {
             body: JSON.stringify(data)
         };
 
-        fetch(url, fetchOptions)
-            .then((response) => {
-                return response.json()
-            })
-            .then((responseData) => {
-                callback(responseData);
-            });
+    fetch(url, fetchOptions)
+        .then((response) => {
+            return response.json()
+        })
+        .then((responseData) => {
+            callback(responseData);
+        });
     },
 };
 
