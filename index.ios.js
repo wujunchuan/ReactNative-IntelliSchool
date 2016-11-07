@@ -1,11 +1,11 @@
 `use strict`;
-import React,{ Component } from 'react';
+import React, {Component} from 'react';
 import {
-	AppRegistry,
-	StyleSheet,
-	View,
-	Text,
-	StatusBar
+    AppRegistry,
+    StyleSheet,
+    View,
+    Text,
+    StatusBar
 } from 'react-native';
 
 import GuideNavigator from './app/component/GuideNavigator'
@@ -15,40 +15,42 @@ import TabBar from  './app/ios/TabBar'
 
 
 class ReactNative_intelliSchool extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			show:true
-		};
-	}
+    constructor(props) {
+        super(props);
+        this.state = {
+            show: true
+        };
+    }
 
-	componentDidMount() {
-		StatusBar.setBarStyle(1); //What's the fuck !? See https://github.com/fbsamples/f8app/issues/85
-	}
-	_hideEntrance(){
-		this.setState({
-			show:false
-		})
-	}
+    componentDidMount() {
+        StatusBar.setBarStyle(1); //What's the fuck !? See https://github.com/fbsamples/f8app/issues/85
+    }
 
-	render() {
-		let entrance = this.state.show?<Entrance hideThis={()=>this._hideEntrance()}/>:<View style={styles.secondView}><GuideNavigator/></View>;
-		return (
-			<View style={{width:Util.size.width,height:Util.size.height}}>
-				{entrance}
-			</View>
+    _hideEntrance() {
+        this.setState({
+            show: false
+        })
+    }
 
-		);
-	}
+    render() {
+        let entrance = this.state.show ?
+            <Entrance hideThis={()=>this._hideEntrance()}/> : <View style={styles.secondView}><GuideNavigator/></View>;
+        return (
+            <View style={{width: Util.size.width, height: Util.size.height}}>
+                {entrance}
+            </View>
+
+        );
+    }
 }
 
 var styles = StyleSheet.create({
-	secondView:{
-		position:'absolute',
-		width:Util.size.width,
-		height:Util.size.height,
-		backgroundColor: 'green'
-	}
+    secondView: {
+        position: 'absolute',
+        width: Util.size.width,
+        height: Util.size.height,
+        backgroundColor: 'green'
+    }
 })
 
 AppRegistry.registerComponent('ReactNative_intelliSchool', () => ReactNative_intelliSchool);
