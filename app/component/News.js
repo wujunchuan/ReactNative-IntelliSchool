@@ -13,6 +13,7 @@ import {
     TouchableOpacity,
 } from 'react-native';
 import NewsDetail from './NewsDetail';
+import ScrollableTabView,{ScrollableTabBar} from 'react-native-scrollable-tab-view';
 
 class News extends Component {
     constructor(props) {
@@ -21,16 +22,42 @@ class News extends Component {
 
     render() {
         return (
-            <View style={styles.tabContent}>
-                <TouchableOpacity onPress={()=> {
-                    this.props.navigator.push({
-                        component: NewsDetail,
-                        title: "新闻详情",
-                    })
-                }}>{/*this指向神坑*/}
-                    <View style={styles.button}><Text style={styles.buttonText}>很多新闻</Text></View>
-                </TouchableOpacity>
-            </View>
+            <ScrollableTabView
+                style={{marginTop: 55, }}
+                initialPage={0}
+                renderTabBar={()=><ScrollableTabBar/>}
+            >
+                <View style={styles.tabContent} tabLabel="新闻1">
+                    <TouchableOpacity onPress={()=> {
+                        this.props.navigator.push({
+                            component: NewsDetail,
+                            title: "新闻详情",
+                        })
+                    }}>{/*this指向神坑*/}
+                        <View style={styles.button}><Text style={styles.buttonText}>很多新闻</Text></View>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.tabContent} tabLabel="新闻2">
+                    <TouchableOpacity onPress={()=> {
+                        this.props.navigator.push({
+                            component: NewsDetail,
+                            title: "新闻详情",
+                        })
+                    }}>{/*this指向神坑*/}
+                        <View style={styles.button}><Text style={styles.buttonText}>很多新闻</Text></View>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.tabContent} tabLabel="新闻3">
+                    <TouchableOpacity onPress={()=> {
+                        this.props.navigator.push({
+                            component: NewsDetail,
+                            title: "新闻详情",
+                        })
+                    }}>{/*this指向神坑*/}
+                        <View style={styles.button}><Text style={styles.buttonText}>很多新闻</Text></View>
+                    </TouchableOpacity>
+                </View>
+            </ScrollableTabView>
         )
     };
 }
