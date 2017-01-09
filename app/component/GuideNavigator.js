@@ -10,7 +10,7 @@ import {
     Navigator
 } from 'react-native';
 import SwipeGuide from '../component/SwipeGuide';
-class GuideNavigator extends Component {
+export default class GuideNavigator extends Component {
     constructor(props) {
         super(props);
     }
@@ -26,5 +26,3 @@ class GuideNavigator extends Component {
         )
     }
 }
-
-module.exports = GuideNavigator;

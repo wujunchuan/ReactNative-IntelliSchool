@@ -13,7 +13,7 @@ import {
     TouchableOpacity,
 } from 'react-native';
 
-class Bbs extends Component {
+export default class Bbs extends Component {
     constructor(props) {
         super(props);
     }
@@ -21,7 +21,7 @@ class Bbs extends Component {
     render() {
         return (
             <View style={styles.tabContent}>
-                <TouchableOpacity onPress={this._navigateToSubview}>
+                <TouchableOpacity onPress={()=>this._navigateToSubview()}>
                     <View style={styles.button}><Text style={styles.buttonText}>很多小吐槽</Text></View>
                 </TouchableOpacity>
             </View>
@@ -33,7 +33,7 @@ class Bbs extends Component {
     }
 }
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
     navigator: {
         flex: 1,
     },
@@ -49,5 +49,3 @@ var styles = StyleSheet.create({
         justifyContent: 'center',
     },
 });
-
-module.exports = Bbs;

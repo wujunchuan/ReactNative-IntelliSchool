@@ -15,7 +15,7 @@ import {
 import NewsDetail from './NewsDetail';
 import ScrollableTabView,{ScrollableTabBar} from 'react-native-scrollable-tab-view';
 
-class News extends Component {
+export default class News extends Component {
     constructor(props) {
         super(props);
     }
@@ -62,7 +62,7 @@ class News extends Component {
     };
 }
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
     navigator: {
         flex: 1,
     },
@@ -78,5 +78,3 @@ var styles = StyleSheet.create({
         justifyContent: 'center',
     },
 });
-
-module.exports = News;

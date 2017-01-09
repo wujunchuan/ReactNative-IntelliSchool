@@ -15,7 +15,7 @@ import {
 import Swiper from 'react-native-swiper';
 import TabBar from '../ios/TabBar'
 
-class SwipeGuide extends Component {
+export default class SwipeGuide extends Component {
     constructor(props) {
         super(props);
     }
@@ -64,7 +64,7 @@ class SwipeGuide extends Component {
     }
 }
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
     wrapper: {},
     slide1: {
         flex: 1,
@@ -90,5 +90,3 @@ var styles = StyleSheet.create({
         fontWeight: 'bold',
     }
 });
-
-module.exports = SwipeGuide;

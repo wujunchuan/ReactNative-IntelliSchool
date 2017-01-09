@@ -14,7 +14,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import Utils from '../utils'
 const AnimatedIcon = Animated.createAnimatedComponent(Icon);//创建Icon动画组件
 
-class Entrance extends Component {
+export default class Entrance extends Component {
     static propTypes = {
         hideThis: React.PropTypes.func.isRequired,
     };
@@ -93,4 +93,3 @@ const styles = StyleSheet.create({
         textAlign: "center"
     },
 });
-module.exports = Entrance;

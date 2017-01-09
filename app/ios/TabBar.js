@@ -26,7 +26,7 @@ const ME_TAB = 'meTab';
 /**
  * 定义TabBar组件
  */
-class TabBar extends Component {
+export default class TabBar extends Component {
     constructor(props) {
         super(props);
 
@@ -176,5 +176,3 @@ const styles = StyleSheet.create({
         borderRadius: 4,
     },
 });
-
-module.exports = TabBar;

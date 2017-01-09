@@ -13,7 +13,7 @@ import {
     TouchableOpacity,
 } from 'react-native';
 
-class Bbs extends Component {
+export default class Bbs extends Component {
     constructor(props) {
         super(props);
     }
@@ -22,7 +22,7 @@ class Bbs extends Component {
         return (
             <View style={styles.tabContent}>
                 <TouchableOpacity onPress={()=>this._navigateToSubview()}>
-                    <View style={styles.button}><Text style={styles.buttonText}>很多便利服务</Text></View>
+                    <View style={styles.button}><Text style={styles.buttonText}>天气查询</Text></View>
                 </TouchableOpacity>
             </View>
         )
@@ -30,7 +30,7 @@ class Bbs extends Component {
 
     _navigateToSubview() {
         const params = {
-            cityname:'厦门',
+            cityname:'厦门',/*城市名称由定位来*/
             dtype:'json',
             key:'55747d2964437629d3f6db58f84ee44b',
             format:1
@@ -60,5 +60,3 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
 });
-
-module.exports = Bbs;

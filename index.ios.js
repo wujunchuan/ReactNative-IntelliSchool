@@ -88,13 +88,13 @@ class ReactNative_intelliSchool extends Component {
     }
 }
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
     secondView: {
         position: 'absolute',
         width: Util.size.width,
         height: Util.size.height,
         backgroundColor: 'green'
     }
-})
+});
 
 AppRegistry.registerComponent('ReactNative_intelliSchool', () => ReactNative_intelliSchool);
