@@ -80,7 +80,7 @@ class ReactNative_intelliSchool extends Component {
         }
 
         return (
-            <View style={{width: Util.size.width, height: Util.size.height}}>
+            <View style={{width: Util.getScreenParam().size.width, height: Util.getScreenParam().size.height}}>
                 {entrance}
             </View>
 
@@ -91,8 +91,8 @@ class ReactNative_intelliSchool extends Component {
 const styles = StyleSheet.create({
     secondView: {
         position: 'absolute',
-        width: Util.size.width,
-        height: Util.size.height,
+        width: Util.getScreenParam().size.width,
+        height: Util.getScreenParam().size.height,
         backgroundColor: 'green'
     }
 });

@@ -80,8 +80,8 @@ const styles = StyleSheet.create({
     entrance: {
         position: "absolute",
         top: 0, left: 0,
-        height: Utils.size.height,
-        width: Utils.size.width,
+        height: Utils.getScreenParam().size.height,
+        width: Utils.getScreenParam().size.width,
         backgroundColor: "#1b95e0",
         alignItems: "center",
         justifyContent: "center"
