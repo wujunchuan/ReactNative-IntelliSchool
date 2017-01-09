@@ -32,7 +32,7 @@ class SwipeGuide extends Component {
                     <Text style={styles.text}>高考不努力</Text>
                 </View>
                 <View style={styles.slide2}>
-                    <Text style={styles.text}>厦软当兄弟</Text>
+                    <Text style={styles.text}>理软当兄弟</Text>
                 </View>
                 <View style={styles.slide3}>
                     <Text style={styles.text} onPress={()=> {

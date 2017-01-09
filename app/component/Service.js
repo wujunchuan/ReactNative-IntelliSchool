@@ -21,7 +21,7 @@ class Bbs extends Component {
     render() {
         return (
             <View style={styles.tabContent}>
-                <TouchableOpacity onPress={this._navigateToSubview}>
+                <TouchableOpacity onPress={()=>this._navigateToSubview()}>
                     <View style={styles.button}><Text style={styles.buttonText}>很多便利服务</Text></View>
                 </TouchableOpacity>
             </View>
@@ -29,11 +29,22 @@ class Bbs extends Component {
     };
 
     _navigateToSubview() {
-        alert('On right button press!');
+        const params = {
+            cityname:'厦门',
+            dtype:'json',
+            key:'55747d2964437629d3f6db58f84ee44b',
+            format:1
+        };
+        const _weatherApi = encodeURI(`http://v.juhe.cn/weather/index?cityname=${params.cityname}&dtype=${params.dtype}&key=${params.key}`);
+        fetch(_weatherApi).then((value)=>{
+            console.log(value);
+        }).catch((error)=>{
+            console.log(error);
+        });
     }
 }
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
     navigator: {
         flex: 1,
     },
