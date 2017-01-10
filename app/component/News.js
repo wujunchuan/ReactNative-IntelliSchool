@@ -43,7 +43,7 @@ export default class News extends Component {
                             component: NewsDetail,
                             title: "新闻详情",
                         })
-                    }}>{/*this指向神坑*/}
+                    }}>
                         <View style={styles.button}><Text style={styles.buttonText}>很多新闻</Text></View>
                     </TouchableOpacity>
                 </View>
@@ -53,7 +53,7 @@ export default class News extends Component {
                             component: NewsDetail,
                             title: "新闻详情",
                         })
-                    }}>{/*this指向神坑*/}
+                    }}>
                         <View style={styles.button}><Text style={styles.buttonText}>很多新闻</Text></View>
                     </TouchableOpacity>
                 </View>

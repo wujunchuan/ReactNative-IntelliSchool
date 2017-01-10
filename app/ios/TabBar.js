@@ -35,22 +35,6 @@ export default class TabBar extends Component {
         };
     }
 
-    _renderContent(color, pageText) {
-        const props = {color, pageText};
-        return (
-            <NavigatorIOS
-                barTintColor='#5F97F6'
-                titleTextColor='white'
-                style={styles.navigator}
-                initialRoute={{
-                    component: ColoredView,
-                    passProps: props,
-                    title: pageText,
-                }}
-            />
-        );
-    }
-
     render() {
         return (
             <TabBarIOS
@@ -116,7 +100,7 @@ export default class TabBar extends Component {
                         style={styles.navigator}
                         initialRoute={{
                             component: Service,
-                            passProps: {},//如果需要传递什么参数,在这里修改
+                            passProps: {this},//如果需要传递什么参数,在这里修改
                             title: "便利服务",
                         }}
                     />

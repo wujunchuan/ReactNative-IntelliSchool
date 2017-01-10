@@ -1,6 +1,6 @@
 /**
  * Created by JohnTrump on 10/16/16.
- * Description: 点击学院新闻的具体item后进入的学院新闻详情页面
+ * Description: 天气查询组件
  *
  */
 `use strict`;
@@ -21,12 +21,27 @@ export default class NewsDetail extends Component {
     render() {
         return (
             <View style={styles.tabContent}>
-                <TouchableOpacity>
-                    <View style={styles.button}><Text style={styles.buttonText}>新闻详情</Text></View>
+                <TouchableOpacity onPress={()=>this._getWeatherJSON()}>
+                    <View style={styles.button}><Text style={styles.buttonText}>获取天气json数据</Text></View>
                 </TouchableOpacity>
             </View>
         );
     }
+    _getWeatherJSON() {
+        const params = {
+            cityname: '厦门', /*城市名称由定位来*/
+            dtype: 'json',
+            key: '55747d2964437629d3f6db58f84ee44b',
+            format: 1
+        };
+        const _weatherApi = encodeURI(`http://v.juhe.cn/weather/index?cityname=${params.cityname}&dtype=${params.dtype}&key=${params.key}`);
+        fetch(_weatherApi).then((value) => {
+            console.log(value);
+        }).catch((error) => {
+            console.log(error);
+        });
+    }
+
 }
 
 const styles = StyleSheet.create({

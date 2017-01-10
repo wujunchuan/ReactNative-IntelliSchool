@@ -1,34 +1,31 @@
 /**
- * Created by JohnTrump on 10/16/16.
- * Description: 点击学院新闻的具体item后进入的学院新闻详情页面
- *
+ * @author junchuan.wu
+ * @date :  2017/1/10
+ * 快递查询组件
  */
-`use strict`;
 import React, {Component} from 'react';
-import {
+import{
     StyleSheet,
     Text,
     View,
-    ScrollView,
-    TouchableOpacity,
+    TouchableOpacity
 } from 'react-native';
 
-export default class NewsDetail extends Component {
-    constructor(props) {
+export default class Express extends Component{
+    constructor(props){
         super(props);
     }
 
-    render() {
-        return (
+    render(){
+        return(
             <View style={styles.tabContent}>
-                <TouchableOpacity>
-                    <View style={styles.button}><Text style={styles.buttonText}>新闻详情</Text></View>
+                <TouchableOpacity onPress={()=>null}>{/*TODO:查询快递的方法*/}
+                    <View style={styles.button}><Text style={styles.buttonText}>查询快递</Text></View>
                 </TouchableOpacity>
             </View>
-        );
-    }
+        )
+    };
 }
-
 const styles = StyleSheet.create({
     navigator: {
         flex: 1,

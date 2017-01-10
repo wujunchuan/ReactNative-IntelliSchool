@@ -12,8 +12,11 @@ import {
     ScrollView,
     TouchableOpacity,
 } from 'react-native';
-
-export default class Bbs extends Component {
+/*天气查询模块*/
+import Weather from './Weather';
+/*快递查询模块*/
+import Express from './Express';
+export default class Service extends Component {
     constructor(props) {
         super(props);
     }
@@ -21,27 +24,22 @@ export default class Bbs extends Component {
     render() {
         return (
             <View style={styles.tabContent}>
-                <TouchableOpacity onPress={()=>this._navigateToSubview()}>
+                <TouchableOpacity onPress={() => this.props.navigator.push({
+                    component: Weather,
+                    title: '天气预报'
+                })}>
                     <View style={styles.button}><Text style={styles.buttonText}>天气查询</Text></View>
                 </TouchableOpacity>
+                <TouchableOpacity onPress={() => this.props.navigator.push({
+                    component: Express,
+                    title: '快递查询'
+                })}>
+                    <View style={styles.button}><Text style={styles.buttonText}>快递查询</Text></View>
+                </TouchableOpacity>
+
             </View>
         )
     };
-
-    _navigateToSubview() {
-        const params = {
-            cityname:'厦门',/*城市名称由定位来*/
-            dtype:'json',
-            key:'55747d2964437629d3f6db58f84ee44b',
-            format:1
-        };
-        const _weatherApi = encodeURI(`http://v.juhe.cn/weather/index?cityname=${params.cityname}&dtype=${params.dtype}&key=${params.key}`);
-        fetch(_weatherApi).then((value)=>{
-            console.log(value);
-        }).catch((error)=>{
-            console.log(error);
-        });
-    }
 }
 
 const styles = StyleSheet.create({
