@@ -44,7 +44,6 @@ export default class TabBar extends Component {
                     title="学院新闻"
                     iconName="ios-home-outline"
                     selectedIconName="ios-home"
-                    bage="3"
                     selected={this.state.selectedTab === NEWS_TAB}
                     onPress={() => {
                         this.setState({
