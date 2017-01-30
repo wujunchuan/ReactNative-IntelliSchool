@@ -3,8 +3,9 @@
  * @author junchuan.wu
  * @date :  2017/1/30
  */
-import React, {Component} from 'react'
-import {StyleSheet, View, Text,Image} from 'react-native'
+import React, {Component} from 'react';
+import {StyleSheet, View, Text, Image} from 'react-native';
+import Utils from '../Utils';
 export default class NewsItemWithPicture extends Component {
     static defaultProps = {};
     static propTypes = {};
@@ -30,18 +31,21 @@ export default class NewsItemWithPicture extends Component {
                     </View>
                 </View>
                 <View style={styles.containerRight}>
-                    <Image style={styles.img} source={{uri:'http://se.xmut.edu.cn/file/2016/12/14/14816866788163T17T.png'}}/>
+                    <Image style={styles.img}
+                           source={{uri: 'http://se.xmut.edu.cn/file/2016/12/14/14816866788163T17T.png'}}/>
                 </View>
             </View>
         );
     }
 }
 const styles = StyleSheet.create({
-    container:{
-        flexDirection:'row',
-        backgroundColor:'white',
-        marginBottom:8,
-        height:75,
+    container: {
+        flexDirection: 'row',
+        backgroundColor: 'white',
+        justifyContent:'space-between',
+        marginBottom: 8,
+        height: 75,
+        width: Utils.getScreenParam().size.width,
         shadowColor: 'rgba(0,0,0,50)',
         shadowOffset: {
             width: 0,
@@ -51,31 +55,33 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.4,
     },
     /*左边*/
-    containerLeft:{
-        justifyContent:'space-between',
-        marginTop:8,
-        marginBottom:8,
+    containerLeft: {
+        justifyContent: 'space-between',
+        marginTop: 8,
+        marginBottom: 8,
         marginLeft: 13,
         marginRight:8,
-        width:255
+        width:Utils.getScreenParam().size.width*0.68,/*左边占68%*/
     },
     /*右边,放照片*/
-    containerRight:{},
-    img:{
-        width:90,
-        height:60,
-        marginTop:8,
-        marginRight:13
+    containerRight: {
+
     },
-    info:{
-        flexDirection:'row',
-        justifyContent:'space-between',
+    img: {
+        width: Utils.getScreenParam().size.width*0.24,
+        height: 60,
+        marginTop: 8,
+        marginRight: 13
     },
-    infoFont:{
-        color:'#dddedf',
-        fontSize:11
+    info: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
     },
-    title:{
-        fontSize:16
+    infoFont: {
+        color: '#dddedf',
+        fontSize: 11
+    },
+    title: {
+        fontSize: 16
     }
 });

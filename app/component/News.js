@@ -16,6 +16,7 @@ import NewsDetail from './NewsDetail';
 import ScrollableTabView, {DefaultTabBar} from 'react-native-scrollable-tab-view';
 import NewsList from './NewsList';
 import NewsItemWithPicture from './NewsItemWithPicture'
+import NewsItemWithoutPicture from './NewsItemWithoutPicture'
 export default class News extends Component {
     constructor(props) {
         super(props);
@@ -36,6 +37,7 @@ export default class News extends Component {
                     <NewsItemWithPicture/>
                     <NewsItemWithPicture/>
                     <NewsItemWithPicture/>
+                    <NewsItemWithoutPicture/>
                 </View>
                 <View tabLabel="党建工作">
                     <TouchableOpacity onPress={() => {

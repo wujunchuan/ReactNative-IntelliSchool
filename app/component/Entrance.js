@@ -11,7 +11,7 @@ import {
     Easing,
 } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons';
-import Utils from '../utils'
+import Utils from '../Utils'
 const AnimatedIcon = Animated.createAnimatedComponent(Icon);//创建Icon动画组件
 
 export default class Entrance extends Component {

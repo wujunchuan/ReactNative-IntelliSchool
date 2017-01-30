@@ -11,7 +11,7 @@ import {
 
 import GuideNavigator from './app/component/GuideNavigator'
 import Entrance from './app/component/Entrance';
-import Util from './app/utils';
+import Util from './app/Utils';
 import TabBar from  './app/ios/TabBar'
 
 

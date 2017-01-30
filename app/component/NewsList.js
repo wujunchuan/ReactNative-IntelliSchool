@@ -14,6 +14,7 @@ import {
     TouchableHighlight
 } from 'react-native';
 
+import NewsItemWithPicture from './NewsItemWithPicture';
 import GiftedListView from 'react-native-gifted-listview';
 
 export default class NewsList extends Component {
@@ -49,19 +50,13 @@ export default class NewsList extends Component {
      */
     _renderRowView(rowData) {
         return (
-            <TouchableHighlight
-                style={styles.row}
-                underlayColor='#c8c7cc'
-                onPress={()=>{
-                    alert(rowData);
-                }}
-            >
-                <Text>{rowData}</Text>
-            </TouchableHighlight>
+            <View>
+                <NewsItemWithPicture/>
+            </View>
         );
     }
 
-    _onEndReached(){
+    _onEndReached() {
         this.refs.listView._onPaginate()
     }
 
@@ -73,7 +68,7 @@ export default class NewsList extends Component {
                     onEndReachedThreshold={10}
                     rowView={this._renderRowView}
                     onFetch={this._onFetch}
-                    onEndReached={()=>this._onEndReached}
+                    onEndReached={() => this._onEndReached}
                     firstLoader={true} // display a loader for the first fetching
                     pagination={true} // enable infinite scrolling using touch to load more
                     refreshable={true} // enable pull-to-refresh for iOS and touch-to-refresh for Android
@@ -86,7 +81,7 @@ export default class NewsList extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingBottom:50,
+        paddingBottom: 50,
         backgroundColor: '#FFF',
     },
     row: {
