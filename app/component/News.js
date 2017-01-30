@@ -52,14 +52,4 @@ export default class News extends Component {
     };
 }
 
-const styles = StyleSheet.create({
-    navigator: {
-        flex: 1,
-    },
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF',
-    },
-});
+const styles = StyleSheet.create({});

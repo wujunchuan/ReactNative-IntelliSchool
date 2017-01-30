@@ -45,9 +45,9 @@ const styles = StyleSheet.create({
         shadowColor: 'rgba(0,0,0,50)',
         shadowOffset: {
             width: 0,
-            height: 2
+            height: 3
         },
-        shadowRadius: 4,
+        shadowRadius: 2,
         shadowOpacity: 0.4,
     },
     /*左边*/
