@@ -13,7 +13,8 @@ import {
     TouchableOpacity,
 } from 'react-native';
 import NewsDetail from './NewsDetail';
-import ScrollableTabView,{DefaultTabBar} from 'react-native-scrollable-tab-view';
+import ScrollableTabView, {DefaultTabBar} from 'react-native-scrollable-tab-view';
+import NewsList from './NewsList';
 
 export default class News extends Component {
     constructor(props) {
@@ -26,20 +27,11 @@ export default class News extends Component {
                 style={{marginTop: 64}}
                 initialPage={0}
                 tabBarBackgroundColor="#4E78BE"
-                tabBarTextStyle={{color:'#FFFFFF',fontSize:15}}
-                tabBarUnderlineStyle={{backgroundColor:'#FFFFFF',height:3}}
-                renderTabBar={() => <DefaultTabBar tabStyle={{paddingBottom:0}}/>}
+                tabBarTextStyle={{color: '#FFFFFF', fontSize: 15}}
+                tabBarUnderlineStyle={{backgroundColor: '#FFFFFF', height: 3}}
+                renderTabBar={() => <DefaultTabBar tabStyle={{paddingBottom: 0}}/>}
             >
-                <View style={styles.tabContent} tabLabel="学院新闻">
-                    <TouchableOpacity onPress={() => {
-                        this.props.navigator.push({
-                            component: NewsDetail,
-                            title: "新闻详情",
-                        })
-                    }}>{/*this指向神坑*/}
-                        <View style={styles.button}><Text style={styles.buttonText}>很多新闻</Text></View>
-                    </TouchableOpacity>
-                </View>
+                <NewsList style={styles.tabContent} tabLabel="校园新闻"/>
                 <View style={styles.tabContent} tabLabel="通知公告">
                     <TouchableOpacity onPress={() => {
                         this.props.navigator.push({
