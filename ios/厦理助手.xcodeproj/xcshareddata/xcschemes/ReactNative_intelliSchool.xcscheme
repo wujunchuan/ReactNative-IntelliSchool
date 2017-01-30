@@ -16,8 +16,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
                BuildableName = "ReactNative_intelliSchool.app"
-               BlueprintName = "ReactNative_intelliSchool"
-               ReferencedContainer = "container:ReactNative_intelliSchool.xcodeproj">
+               BlueprintName = "&#x53a6;&#x7406;&#x52a9;&#x624b;"
+               ReferencedContainer = "container:&#x53a6;&#x7406;&#x52a9;&#x624b;.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "ReactNative_intelliSchoolTests.xctest"
-               BlueprintName = "ReactNative_intelliSchoolTests"
-               ReferencedContainer = "container:ReactNative_intelliSchool.xcodeproj">
+               BuildableName = "&#x53a6;&#x7406;&#x52a9;&#x624b;Tests.xctest"
+               BlueprintName = "&#x53a6;&#x7406;&#x52a9;&#x624b;Tests"
+               ReferencedContainer = "container:&#x53a6;&#x7406;&#x52a9;&#x624b;.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,9 +47,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "ReactNative_intelliSchoolTests.xctest"
-               BlueprintName = "ReactNative_intelliSchoolTests"
-               ReferencedContainer = "container:ReactNative_intelliSchool.xcodeproj">
+               BuildableName = "&#x53a6;&#x7406;&#x52a9;&#x624b;Tests.xctest"
+               BlueprintName = "&#x53a6;&#x7406;&#x52a9;&#x624b;Tests"
+               ReferencedContainer = "container:&#x53a6;&#x7406;&#x52a9;&#x624b;.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -58,8 +58,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
             BuildableName = "ReactNative_intelliSchool.app"
-            BlueprintName = "ReactNative_intelliSchool"
-            ReferencedContainer = "container:ReactNative_intelliSchool.xcodeproj">
+            BlueprintName = "&#x53a6;&#x7406;&#x52a9;&#x624b;"
+            ReferencedContainer = "container:&#x53a6;&#x7406;&#x52a9;&#x624b;.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -81,8 +81,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
             BuildableName = "ReactNative_intelliSchool.app"
-            BlueprintName = "ReactNative_intelliSchool"
-            ReferencedContainer = "container:ReactNative_intelliSchool.xcodeproj">
+            BlueprintName = "&#x53a6;&#x7406;&#x52a9;&#x624b;"
+            ReferencedContainer = "container:&#x53a6;&#x7406;&#x52a9;&#x624b;.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -100,8 +100,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
             BuildableName = "ReactNative_intelliSchool.app"
-            BlueprintName = "ReactNative_intelliSchool"
-            ReferencedContainer = "container:ReactNative_intelliSchool.xcodeproj">
+            BlueprintName = "&#x53a6;&#x7406;&#x52a9;&#x624b;"
+            ReferencedContainer = "container:&#x53a6;&#x7406;&#x52a9;&#x624b;.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
