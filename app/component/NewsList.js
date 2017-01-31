@@ -18,6 +18,7 @@ import NewsItemWithPicture from './NewsItemWithPicture';
 import NewsItemWithoutPicture from './NewsItemWithoutPicture'
 import GiftedListView from 'react-native-gifted-listview';
 import Utils from '../Utils';
+import NewsDetail from './NewsDetail';
 export default class NewsList extends Component {
     constructor(props) {
         super(props);
@@ -30,53 +31,59 @@ export default class NewsList extends Component {
      * @param {function} callback Should pass the rows
      * @param {object} options Inform if first load
      */
-    _onFetch(page = 1, callback, options) {
+    _onFetch = (page = 1, callback, options) => {
         setTimeout(() => {
-            Utils.get('/school/news?currentPage='+page, function (data) {
+            Utils.get('/school/news?currentPage=' + page, function (data) {
                 //获取成功
-                if(data.code==='200'){
-                    if(data.paging.nextPage===data.paging.pageCount) {
-                        callback(data.articleList, {
+                if (data.code === '200') {
+                    let articleList = data.articleList;
+                    if (data.paging.nextPage === data.paging.pageCount) {
+                        callback(articleList, {
                             allLoaded: true
                         });
-                    }else{
-                        callback(data.articleList);
+                    } else {
+                        callback(articleList);
                         page++;
                     }
                 }
             });
-        },1000);
-    }
+        }, 100);
+    };
 
 
     /**
      * Render a row
      * @param {object} rowData Row data
      */
-    _renderRowView(rowData) {
-        console.log(rowData);
+    _renderRowView = (rowData) => {
         return (
-            <TouchableHighlight underlayColor='#fedeea' onPress={()=>console.log('press')}>
+            <TouchableHighlight
+                underlayColor='#fedeea'
+                onPress={() => {
+                    this.props.navigator.push({
+                        component: NewsDetail,
+                        title: "新闻详情",
+                        passProps:{
+                            sysId:rowData.sysId
+                        }
+                    });
+                }}
+            >
                 <View>
-                    {rowData.images==null?<NewsItemWithoutPicture rowData={rowData}/>:<NewsItemWithPicture rowData={rowData}/>}
+                    {rowData.images == null ? <NewsItemWithoutPicture rowData={rowData}/> :
+                        <NewsItemWithPicture rowData={rowData}/>}
                 </View>
             </TouchableHighlight>
         );
-    }
-
-    _onEndReached() {
-        // this.refs.listView._onPaginate()
-    }
+    };
 
     render() {
         return (
             <View style={styles.container}>
                 <GiftedListView
-                    ref='listView'
                     onEndReachedThreshold={10}
                     rowView={this._renderRowView}
                     onFetch={this._onFetch}
-                    onEndReached={() => this._onEndReached}
                     firstLoader={true} // display a loader for the first fetching
                     pagination={true} // enable infinite scrolling using touch to load more
                     refreshable={true} // enable pull-to-refresh for iOS and touch-to-refresh for Android

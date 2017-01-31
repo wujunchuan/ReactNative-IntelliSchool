@@ -10,10 +10,13 @@ import {
     Text,
     View,
     ScrollView,
-    TouchableOpacity,
+    WebView
 } from 'react-native';
-
+import Utils from '../Utils'
 export default class NewsDetail extends Component {
+    static defaultProps = {
+        sysId:'20161212100000000765'
+    };
     constructor(props) {
         super(props);
     }
@@ -21,27 +24,26 @@ export default class NewsDetail extends Component {
     render() {
         return (
             <View style={styles.tabContent}>
-                <TouchableOpacity>
-                    <View style={styles.button}><Text style={styles.buttonText}>新闻详情</Text></View>
-                </TouchableOpacity>
+                <WebView
+                    source={{uri:'http://se.xmut.edu.cn/articleDetail/'+this.props.sysId}}
+                    style={styles.webSize}
+                    startInLoadingState={true}
+                    backButtonEnabled={true}
+                    scalesPageToFit={false}
+                />
             </View>
         );
     }
 }
 
 const styles = StyleSheet.create({
-    navigator: {
-        flex: 1,
-    },
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF',
-    },
     tabContent: {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
     },
+    webSize:{
+        width:Utils.getScreenParam().size.width,
+        height:Utils.getScreenParam().size.height
+    }
 });

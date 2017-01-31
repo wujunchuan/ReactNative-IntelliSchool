@@ -33,7 +33,7 @@ export default class News extends Component {
                 tabBarUnderlineStyle={{backgroundColor: '#FFFFFF', height: 3}}
                 renderTabBar={() => <DefaultTabBar tabStyle={{paddingBottom: 0}}/>}
             >
-                <NewsList tabLabel="校园新闻"/>
+                <NewsList tabLabel="校园新闻" navigator={this.props.navigator}/>
                 <View tabLabel="通知公告">
                     <NewsItemWithPicture/>
                     <NewsItemWithPicture/>
