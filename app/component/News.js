@@ -33,22 +33,9 @@ export default class News extends Component {
                 tabBarUnderlineStyle={{backgroundColor: '#FFFFFF', height: 3}}
                 renderTabBar={() => <DefaultTabBar tabStyle={{paddingBottom: 0}}/>}
             >
-                <NewsList tabLabel="校园新闻" navigator={this.props.navigator}/>
-                <View tabLabel="通知公告">
-                    <NewsItemWithPicture/>
-                    <NewsItemWithPicture/>
-                    <NewsItemWithoutPicture/>
-                </View>
-                <View tabLabel="党建工作">
-                    <TouchableOpacity onPress={() => {
-                        this.props.navigator.push({
-                            component: NewsDetail,
-                            title: "新闻详情",
-                        })
-                    }}>
-                        <View style={styles.button}><Text style={styles.buttonText}>很多新闻</Text></View>
-                    </TouchableOpacity>
-                </View>
+                <NewsList tabLabel="校园新闻" navigator={this.props.navigator} type={'news'}/>
+                <NewsList tabLabel="通知公告" navigator={this.props.navigator} type={'notification'}/>
+                <NewsList tabLabel="党建工作" navigator={this.props.navigator} type={'party'}/>
             </ScrollableTabView>
         );
     };

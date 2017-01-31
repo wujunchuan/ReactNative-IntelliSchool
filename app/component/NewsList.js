@@ -20,6 +20,9 @@ import GiftedListView from 'react-native-gifted-listview';
 import Utils from '../Utils';
 import NewsDetail from './NewsDetail';
 export default class NewsList extends Component {
+    static defaultProps = {
+        type:'news'//默认类型为获取新闻
+    };
     constructor(props) {
         super(props);
     }
@@ -33,7 +36,7 @@ export default class NewsList extends Component {
      */
     _onFetch = (page = 1, callback, options) => {
         setTimeout(() => {
-            Utils.get('/school/news?currentPage=' + page, function (data) {
+            Utils.get('/school/' + this.props.type +'?currentPage=' + page, function (data) {
                 //获取成功
                 if (data.code === '200') {
                     let articleList = data.articleList;
