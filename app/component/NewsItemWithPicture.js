@@ -4,10 +4,23 @@
  * @date :  2017/1/30
  */
 import React, {Component} from 'react';
-import {StyleSheet, View, Text, Image} from 'react-native';
+import {StyleSheet, View, Text, Image,TouchableHighlight} from 'react-native';
 import Utils from '../Utils';
 export default class NewsItemWithPicture extends Component {
-    static defaultProps = {};
+    static defaultProps = {
+        rowData:{
+            "title": "init..",
+            "sysId": "20161214100000000768",
+            "releaseDate": "2016-12-14",
+            "editorAuthor": "创新创业部",
+            "visits": "19124",
+            "images": [
+                "/file/2016/12/14/14816866788163T17T.png",
+                "/file/2016/12/14/1481686683324xx8av.png",
+                "/file/2016/12/14/1481686668660vRKR3.png"
+            ]
+        }
+    };
     static propTypes = {};
 
     constructor(props) {
@@ -20,19 +33,16 @@ export default class NewsItemWithPicture extends Component {
             /*容器*/
             <View style={styles.container}>
                 <View style={styles.containerLeft}>
-                    <Text numberOfLines={2} style={styles.title}>
-                        校企共建"帝启互联网金融学院"签约及揭牌仪式顺利召开
-                        校企共建"帝启互联网金融学院"签约及揭牌仪式顺利召开
-                    </Text>
+                    <Text numberOfLines={2} style={styles.title}>{this.props.rowData.title}</Text>
                     <View style={styles.info}>
-                        <Text style={styles.infoFont}>阅读:15318</Text>
-                        <Text style={styles.infoFont}>创新创业部</Text>
-                        <Text style={styles.infoFont}>2016-12-14</Text>
+                        <Text style={styles.infoFont}>阅读:{this.props.rowData.visits}</Text>
+                        <Text style={styles.infoFont}>{this.props.rowData.editorAuthor}</Text>
+                        <Text style={styles.infoFont}>{this.props.rowData.releaseDate}</Text>
                     </View>
                 </View>
                 <View style={styles.containerRight}>
                     <Image style={styles.img}
-                           source={{uri: 'http://se.xmut.edu.cn/file/2016/12/14/14816866788163T17T.png'}}/>
+                           source={{uri: 'http://se.xmut.edu.cn'+this.props.rowData.images[0]}}/>
                 </View>
             </View>
         );

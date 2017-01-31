@@ -11,14 +11,14 @@ import {
     StyleSheet,
     Text,
     View,
-    TouchableHighlight
+    TouchableHighlight,
 } from 'react-native';
 
 import NewsItemWithPicture from './NewsItemWithPicture';
+import NewsItemWithoutPicture from './NewsItemWithoutPicture'
 import GiftedListView from 'react-native-gifted-listview';
-
+import Utils from '../Utils';
 export default class NewsList extends Component {
-
     constructor(props) {
         super(props);
     }
@@ -32,15 +32,20 @@ export default class NewsList extends Component {
      */
     _onFetch(page = 1, callback, options) {
         setTimeout(() => {
-            let rows = ['row ' + ((page - 1) * 3 + 1), 'row ' + ((page - 1) * 3 + 2), 'row ' + ((page - 1) * 3 + 3),'row haha','row hehe    '];
-            if (page === 4) {
-                callback(rows, {
-                    allLoaded: true, // the end of the list is reached
-                });
-            } else {
-                callback(rows);
-            }
-        }, 1000); // simulating network fetching
+            Utils.get('/school/news?currentPage='+page, function (data) {
+                //获取成功
+                if(data.code==='200'){
+                    if(data.paging.nextPage===data.paging.pageCount) {
+                        callback(data.articleList, {
+                            allLoaded: true
+                        });
+                    }else{
+                        callback(data.articleList);
+                        page++;
+                    }
+                }
+            });
+        },1000);
     }
 
 
@@ -49,15 +54,18 @@ export default class NewsList extends Component {
      * @param {object} rowData Row data
      */
     _renderRowView(rowData) {
+        console.log(rowData);
         return (
-            <View>
-                <NewsItemWithPicture/>
-            </View>
+            <TouchableHighlight underlayColor='#fedeea' onPress={()=>console.log('press')}>
+                <View>
+                    {rowData.images==null?<NewsItemWithoutPicture rowData={rowData}/>:<NewsItemWithPicture rowData={rowData}/>}
+                </View>
+            </TouchableHighlight>
         );
     }
 
     _onEndReached() {
-        this.refs.listView._onPaginate()
+        // this.refs.listView._onPaginate()
     }
 
     render() {

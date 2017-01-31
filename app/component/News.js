@@ -10,6 +10,7 @@ import {
     Text,
     View,
     ScrollView,
+    TouchableHighlight,
     TouchableOpacity,
 } from 'react-native';
 import NewsDetail from './NewsDetail';
@@ -34,7 +35,6 @@ export default class News extends Component {
             >
                 <NewsList tabLabel="校园新闻"/>
                 <View tabLabel="通知公告">
-                    <NewsItemWithPicture/>
                     <NewsItemWithPicture/>
                     <NewsItemWithPicture/>
                     <NewsItemWithoutPicture/>

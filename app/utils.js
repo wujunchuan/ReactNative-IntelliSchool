@@ -8,7 +8,11 @@ import {PixelRatio} from 'react-native';
 import Dimensions from 'Dimensions';
 
 export default class Utils {
-    constructor() {}
+    static NODE_SERVER:'http://192.168.199.161:10017/api';
+    static SCHOOL_SERVER: 'http://se.xmut.edu.cn';
+    constructor() {
+
+    }
 
     /**
      * 获取屏幕信息
@@ -40,12 +44,32 @@ export default class Utils {
             },
             body: JSON.stringify(data)
         };
-        fetch(url, fetchOptions)
+        fetch('http://192.168.199.161:10017/api'+url, fetchOptions)
             .then((response) => {
                 return response.json();
             })
             .then((responseData) => {
                 callback(responseData);
+            });
+    }
+
+    /**
+     * 对get方法的封装,底层是fetch方法
+     */
+    static get(url,callback){
+        const fetchOptions = {
+            method:'GET'
+        };
+        fetch('http://192.168.199.161:10017/api'+url, fetchOptions)
+            .then((response) => {
+                console.log('[FETCH Success]');
+                return response.json();
             })
+            .then((responseData) => {
+                callback(responseData);
+            })
+            .catch((error)=>{
+                console.log('[FETCH ERROR]'+error.message);
+            });
     }
 }
