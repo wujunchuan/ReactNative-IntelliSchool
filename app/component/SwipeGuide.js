@@ -7,6 +7,7 @@
 import React, {Component} from 'react';
 import {
     StyleSheet,
+    Platform,
     View,
     Text,
     AsyncStorage
@@ -14,7 +15,7 @@ import {
 
 import Swiper from 'react-native-swiper';
 import TabBar from '../ios/TabBar'
-
+import Drawer from '../android/Drawer';
 export default class SwipeGuide extends Component {
     constructor(props) {
         super(props);
@@ -35,7 +36,7 @@ export default class SwipeGuide extends Component {
                     <Text style={styles.text}>理软当兄弟</Text>
                 </View>
                 <View style={styles.slide3}>
-                    <Text style={styles.text} onPress={()=> {
+                    <Text style={styles.text} onPress={() => {
                         {
                             /*使用resetTo避免进入App还可以后退,如果是pop的话,可以再次压入栈*/
                             console.log("press and resetTo..");
@@ -43,18 +44,18 @@ export default class SwipeGuide extends Component {
                              *See:
                              * http://stackoverflow.com/questions/35596187/react-native-asyncstorage-storing-values-other-than-strings
                              * */
-                            AsyncStorage.setItem("isfirst","false")
-                                .then(()=>{
+                            AsyncStorage.setItem("isfirst", "false")
+                                .then(() => {
                                     console.log("存储成功");
                                 })
-                                .catch((error)=>{
+                                .catch((error) => {
                                     console.log("捕获异常");
                                     console.log(error);
                                 }).done();
                         }
                         this.props.navigator.resetTo({
-                            component: TabBar,
-                            title: "",
+                            component: Platform.OS === 'ios' ? TabBar : Drawer,
+                            title: "学院新闻",
                             navigationBarHidden: true,
                         })
                     }}>Hey,兄弟!</Text>
