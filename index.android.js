@@ -13,10 +13,10 @@ import {
     StatusBar,
     AsyncStorage
 } from 'react-native';
-import {Button, Card} from 'react-native-material-design';
 import GuideNavigator from './app/component/GuideNavigator'
 import Entrance from './app/component/Entrance';
 import Util from './app/Utils';
+import Drawer from './app/android/Drawer';
 export default class ReactNative_intelliSchool extends Component {
     constructor(props) {
         super(props);
@@ -24,7 +24,7 @@ export default class ReactNative_intelliSchool extends Component {
             /*是否显示启动页面,Notice:远程调试状态下可能会卡顿!!*/
             showStart: true,
             /*是否显示初次启动页面的导航页,如果是第一次打开的话,就是true,否则为false*/
-            showGuide: true
+            showGuide: false
         };
     }
 
@@ -63,6 +63,11 @@ export default class ReactNative_intelliSchool extends Component {
         })
     }
 
+    componentDidMount() {
+        /*Android 平台需要用这个来隐藏*/
+        StatusBar.setHidden(true);
+    }
+
     render() {
         /*判断是否是第一次打开APP应用*/
         let entrance = null;
@@ -76,7 +81,7 @@ export default class ReactNative_intelliSchool extends Component {
             if (this.state.showStart) {
                 entrance = <Entrance hideThis={() => this._hideEntrance()}/>
             } else {
-                entrance = <View style={styles.secondView}><Text>Hello Android</Text></View>
+                entrance = <View style={styles.secondView}><Drawer/></View>
             }
         }
 
@@ -94,7 +99,6 @@ const styles = StyleSheet.create({
         position: 'absolute',
         width: Util.getScreenParam().size.width,
         height: Util.getScreenParam().size.height,
-        backgroundColor: 'green'
     }
 });
 

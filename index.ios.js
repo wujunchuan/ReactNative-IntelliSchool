@@ -93,7 +93,6 @@ const styles = StyleSheet.create({
         position: 'absolute',
         width: Util.getScreenParam().size.width,
         height: Util.getScreenParam().size.height,
-        backgroundColor: 'green'
     }
 });
 
