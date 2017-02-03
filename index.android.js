@@ -22,9 +22,9 @@ export default class ReactNative_intelliSchool extends Component {
         super(props);
         this.state = {
             /*是否显示启动页面,Notice:远程调试状态下可能会卡顿!!*/
-            showStart: true,
+            showStart: false,
             /*是否显示初次启动页面的导航页,如果是第一次打开的话,就是true,否则为false*/
-            showGuide: true
+            showGuide: false
         };
     }
 

@@ -23,13 +23,11 @@ export default class Drawer extends Component {
         this.state = {};
     }
 
-    componentDidMount() {
+    componentDidUpdate() {
         /*进来页面后,就显示手机的状态栏*/
         StatusBar.setHidden(false);
-        /*TODO:调整状态栏的颜色*/
-        StatusBar.setBackgroundColor('rgba(60, 163, 227, 1)', true);
+        StatusBar.setBackgroundColor('rgba(33, 151, 244, 1)', true);
     }
-
     render() {
         let navigationView = (
             <View style={{flex: 1, backgroundColor: '#fff'}}>
