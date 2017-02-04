@@ -9,6 +9,7 @@ import {
     StyleSheet,
     Text,
     View,
+    Platform,
     ScrollView,
     TouchableHighlight,
     TouchableOpacity,
@@ -23,7 +24,7 @@ export default class News extends Component {
     render() {
         return (
             <ScrollableTabView
-                style={{marginTop: 64}}
+                style={{marginTop: Platform.OS==='ios'?64:56}}
                 initialPage={0}
                 tabBarBackgroundColor="#4E78BE"
                 tabBarTextStyle={{color: '#FFFFFF', fontSize: 15}}

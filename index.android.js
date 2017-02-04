@@ -22,9 +22,9 @@ export default class ReactNative_intelliSchool extends Component {
         super(props);
         this.state = {
             /*是否显示启动页面,Notice:远程调试状态下可能会卡顿!!*/
-            showStart: false,
+            showStart: true,
             /*是否显示初次启动页面的导航页,如果是第一次打开的话,就是true,否则为false*/
-            showGuide: false
+            showGuide: true
         };
     }
 
@@ -44,8 +44,8 @@ export default class ReactNative_intelliSchool extends Component {
             .then((value) => {
                 if (value !== null) {
                     this.setState({
-                        /*因为AsyncStorage取出来的都是String类型,我这里用JSON库直接进行转换TODO:方便测试,下面这行注释*/
-                        /*showGuide: JSON.parse(value)*/
+                        /*因为AsyncStorage取出来的都是String类型,我这里用JSON库直接进行转换*/
+                        showGuide: JSON.parse(value)
                     });
                 } else {
                     console.warn("没有isfirst记录");

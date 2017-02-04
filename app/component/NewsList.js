@@ -10,6 +10,7 @@ import React, {Component} from 'react';
 import {
     StyleSheet,
     Text,
+    Platform,
     View,
     TouchableHighlight,
 } from 'react-native';
@@ -99,7 +100,7 @@ export default class NewsList extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingBottom: 50,
+        paddingBottom: Platform.OS === 'ios' ? 50 : 0,
         backgroundColor: '#FFF',
     },
     row: {

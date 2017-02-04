@@ -9,15 +9,6 @@ import {StyleSheet, View, Text} from 'react-native'
 import { Toolbar as MaterialToolbar } from 'react-native-material-design';
 export default class ToolBar extends Component {
 
-/*
-    static contextTypes = {
-        navigator: PropTypes.object
-    };
-
-    static propTypes = {
-        onIconPress: PropTypes.func.isRequired
-    };
-*/
     constructor(props) {
         super(props);
         this.state = {

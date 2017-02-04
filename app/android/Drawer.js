@@ -10,10 +10,12 @@ import {
     View,
     StatusBar,
     DrawerLayoutAndroid,
+    ScrollView,
     Text,
 } from 'react-native'
 import ToolBar from './ToolBar';
 import Utils from '../Utils';
+import News from '../component/News';
 export default class Drawer extends Component {
     static defaultProps = {};
     static propTypes = {};
@@ -28,7 +30,9 @@ export default class Drawer extends Component {
         StatusBar.setHidden(false);
         StatusBar.setBackgroundColor('rgba(33, 151, 244, 1)', true);
     }
+
     render() {
+        /*Drawer的JSX*/
         let navigationView = (
             <View style={{flex: 1, backgroundColor: '#fff'}}>
                 <Text style={{margin: 10, fontSize: 15, textAlign: 'left'}}>I'm in the Drawer!</Text>
@@ -37,10 +41,12 @@ export default class Drawer extends Component {
         return (
 
             <DrawerLayoutAndroid
-                drawerWidth={Utils.getScreenParam().size.width*0.8}
+                drawerWidth={Utils.getScreenParam().size.width * 0.8}
                 drawerPosition={DrawerLayoutAndroid.positions.Left}
-                renderNavigationView={() => navigationView}>
+                renderNavigationView={() => navigationView}/*渲染Drawer的View*/
+            >
                 <ToolBar/>
+                <News/>
             </DrawerLayoutAndroid>
         );
     }
