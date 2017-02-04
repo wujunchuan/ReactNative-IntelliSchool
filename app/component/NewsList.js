@@ -100,7 +100,7 @@ export default class NewsList extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingBottom: Platform.OS === 'ios' ? 50 : 0,
+        paddingBottom: Platform.OS === 'ios' ? 50 : 20,
         backgroundColor: '#FFF',
     },
     row: {

@@ -23,10 +23,6 @@ export default class Drawer extends Component {
     constructor(props) {
         super(props);
         this.state = {};
-    }
-
-    componentDidUpdate() {
-        /*进来页面后,就显示手机的状态栏*/
         StatusBar.setHidden(false);
         StatusBar.setBackgroundColor('rgba(33, 151, 244, 1)', true);
     }
