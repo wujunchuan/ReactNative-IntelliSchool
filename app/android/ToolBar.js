@@ -11,11 +11,10 @@ export default class ToolBar extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            title: "学院新闻",
-        };
     }
-
+    openDrawer(){
+        alert('打开');
+    }
     render() {
         return (
             <MaterialToolbar
