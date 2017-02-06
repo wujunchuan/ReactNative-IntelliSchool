@@ -18,24 +18,27 @@ import {
 import Utils from '../Utils';
 import News from '../component/News';
 import Service from '../component/Service';
-import { Toolbar as MaterialToolbar } from 'react-native-material-design';
+import NewsDetail from '../component/NewsDetail';
+import {Toolbar as MaterialToolbar} from 'react-native-material-design';
 export default class Drawer extends Component {
     static propTypes = {};
+
     constructor(props) {
         super(props);
         this.state = {
-            title:'学院新闻'
+            title: '学院新闻'
         };
         StatusBar.setHidden(false);
         StatusBar.setBackgroundColor('rgba(33, 151, 244, 1)', true);
         BackAndroid.addEventListener('hardwareBackPress', () => {
-            if(this.state.navigator.getCurrentRoutes().length===1) {
+            if (this.state.navigator.getCurrentRoutes().length === 1) {
                 return false;
             }
             this.state.navigator.pop();
             return true;
         });
     }
+
     renderScene = (router, navigator) => {
         let Component = null;
         this.state.navigator = navigator;
@@ -48,6 +51,10 @@ export default class Drawer extends Component {
                 Component = Service;
                 this.state.title = '便捷服务';
                 break;
+            case 'detail':
+                Component = NewsDetail;
+                this.state.title = '新闻详情';
+                break;
         }
         /*注意这里,将navigator作为属性props传递给各个场景的组件*/
         return <Component navigator={navigator}/>;
@@ -57,16 +64,18 @@ export default class Drawer extends Component {
         return Navigator.SceneConfigs.FloatFromRight;
     }
 
-    onNavPress (target){
+    onNavPress(target) {
         this.state.navigator.push({
             name: target
         });
         //关闭drawer
         this.refs['DRAWER'].closeDrawer();
     }
-    onMenuPress(){
+
+    onMenuPress() {
         this.refs['DRAWER'].openDrawer();
     }
+
     render() {
         /*Drawer的JSX*/
         let navigationView = (

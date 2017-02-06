@@ -66,6 +66,7 @@ export default class NewsList extends Component {
                 onPress={() => {
                     this.props.navigator.push({
                         component: NewsDetail,
+                        name:'detail',//for android navigator
                         title: "新闻详情",
                         passProps:{
                             sysId:rowData.sysId

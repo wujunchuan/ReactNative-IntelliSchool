@@ -10,6 +10,7 @@ import {
     Text,
     View,
     ScrollView,
+    Platform,
     WebView
 } from 'react-native';
 import Utils from '../Utils'
@@ -44,6 +45,7 @@ const styles = StyleSheet.create({
     },
     webSize:{
         width:Utils.getScreenParam().size.width,
-        height:Utils.getScreenParam().size.height
+        height:Utils.getScreenParam().size.height,
+        marginTop: Platform.OS==='ios'?0:56
     }
 });
