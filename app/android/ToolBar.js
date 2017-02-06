@@ -6,7 +6,6 @@
 
 import React, {Component} from 'react'
 import {StyleSheet, View, Text} from 'react-native'
-import { Toolbar as MaterialToolbar } from 'react-native-material-design';
 export default class ToolBar extends Component {
 
     constructor(props) {
@@ -17,11 +16,6 @@ export default class ToolBar extends Component {
     }
     render() {
         return (
-            <MaterialToolbar
-                title={navigator && navigator.currentRoute ? navigator.currentRoute.title : 'Welcome'}
-                icon={navigator && navigator.isChild ? 'keyboard-backspace' : 'menu'}
-                onIconPress={() => navigator && navigator.isChild ? navigator.back() : menu()}
-            />
         );
     }
 }

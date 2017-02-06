@@ -17,13 +17,15 @@ import {
 } from 'react-native';
 import Utils from '../Utils';
 import News from '../component/News';
-import ToolBar from './ToolBar';
 import Service from '../component/Service';
+import { Toolbar as MaterialToolbar } from 'react-native-material-design';
 export default class Drawer extends Component {
     static propTypes = {};
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            title:'学院新闻'
+        };
         StatusBar.setHidden(false);
         StatusBar.setBackgroundColor('rgba(33, 151, 244, 1)', true);
         BackAndroid.addEventListener('hardwareBackPress', () => {
@@ -40,9 +42,11 @@ export default class Drawer extends Component {
         switch (router.name) {
             case 'news':
                 Component = News;
+                this.state.title = '学院新闻';
                 break;
             case 'service':
                 Component = Service;
+                this.state.title = '便捷服务';
                 break;
         }
         /*注意这里,将navigator作为属性props传递给各个场景的组件*/
@@ -60,7 +64,9 @@ export default class Drawer extends Component {
         //关闭drawer
         this.refs['DRAWER'].closeDrawer();
     }
-
+    onMenuPress(){
+        this.refs['DRAWER'].openDrawer();
+    }
     render() {
         /*Drawer的JSX*/
         let navigationView = (
@@ -82,7 +88,12 @@ export default class Drawer extends Component {
                     renderScene={this.renderScene}
                 >
                 </Navigator>
-                <ToolBar/>
+                <MaterialToolbar
+                    title={this.state.title}
+                    icon={navigator && navigator.isChild ? 'keyboard-backspace' : 'menu'}
+                    onIconPress={() => navigator && navigator.isChild ? navigator.back() : this.onMenuPress()}
+                />
+
             </DrawerLayoutAndroid>
         );
     }
