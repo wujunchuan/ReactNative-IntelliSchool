@@ -16,7 +16,7 @@ import {
 import GuideNavigator from './app/component/GuideNavigator'
 import Entrance from './app/component/Entrance';
 import Util from './app/Utils';
-import Drawer from './app/android/Drawer';
+import App from './app/android/App';
 export default class ReactNative_intelliSchool extends Component {
     constructor(props) {
         super(props);
@@ -81,7 +81,7 @@ export default class ReactNative_intelliSchool extends Component {
             if (this.state.showStart) {
                 entrance = <Entrance hideThis={() => this._hideEntrance()}/>
             } else {
-                entrance = <View style={styles.secondView}><Drawer/></View>
+                entrance = <View style={styles.secondView}><App/></View>
             }
         }
 

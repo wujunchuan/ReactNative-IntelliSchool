@@ -7,7 +7,7 @@
 import React, {Component} from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 import News from '../component/News';
-import Bbs from '../component/Bbs';
+import Tucao from '../component/Tucao';
 import Service from '../component/Service';
 import Personal from '../component/Personal';
 
@@ -18,7 +18,7 @@ import {
 } from 'react-native';
 /*此处定义Tab的标识常量*/
 const NEWS_TAB = 'homeTab';
-const BBS_TAB = 'messageTab';
+const Tucao_TAB = 'messageTab';
 const SERVICE_TAB = 'discoverTab';
 const ME_TAB = 'meTab';
 
@@ -66,10 +66,10 @@ export default class TabBar extends Component {
                     title="小吐槽"
                     iconName="ios-star-outline"
                     selectedIconName="ios-star"
-                    selected={this.state.selectedTab === BBS_TAB}
+                    selected={this.state.selectedTab === Tucao_TAB}
                     onPress={() => {
                         this.setState({
-                            selectedTab: BBS_TAB,
+                            selectedTab: Tucao_TAB,
                         });
                     }}>
                     <NavigatorIOS
@@ -77,7 +77,7 @@ export default class TabBar extends Component {
                         titleTextColor='white'
                         style={styles.navigator}
                         initialRoute={{
-                            component: Bbs,
+                            component: Tucao,
                             passProps: {},//如果需要传递什么参数,在这里修改
                             title: "小吐槽",
                         }}

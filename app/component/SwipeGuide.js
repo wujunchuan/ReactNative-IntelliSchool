@@ -15,7 +15,7 @@ import {
 
 import Swiper from 'react-native-swiper';
 import TabBar from '../ios/TabBar'
-import Drawer from '../android/Drawer';
+import App from '../android/App';
 export default class SwipeGuide extends Component {
     constructor(props) {
         super(props);
@@ -54,7 +54,7 @@ export default class SwipeGuide extends Component {
                                 }).done();
                         }
                         this.props.navigator.resetTo({
-                            component: Platform.OS === 'ios' ? TabBar : Drawer,
+                            component: Platform.OS === 'ios' ? TabBar : App,
                             title: "学院新闻",
                             navigationBarHidden: true,
                         })
