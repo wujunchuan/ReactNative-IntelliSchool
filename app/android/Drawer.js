@@ -42,18 +42,16 @@ export default class Drawer extends Component {
     renderScene = (router, navigator) => {
         let Component = null;
         this.state.navigator = navigator;
+        // console.log(this.refs['TOOLBAR']);
         switch (router.name) {
             case 'news':
                 Component = News;
-                this.state.title = '学院新闻';
                 break;
             case 'service':
                 Component = Service;
-                this.state.title = '便捷服务';
                 break;
             case 'detail':
                 Component = NewsDetail;
-                this.state.title = '新闻详情';
                 break;
         }
         /*注意这里,将navigator作为属性props传递给各个场景的组件*/
@@ -65,6 +63,12 @@ export default class Drawer extends Component {
     }
 
     onNavPress(target) {
+        /*为了避免路由栈中重复,在打开新页面前先判断一下是否已存在*/
+        const lastIndex = this.state.navigator.getCurrentRoutes().length - 1;
+        if(this.state.navigator.getCurrentRoutes()[lastIndex].name===target){
+            this.refs['DRAWER'].closeDrawer();
+            return false;
+        }
         this.state.navigator.push({
             name: target
         });
@@ -98,6 +102,7 @@ export default class Drawer extends Component {
                 >
                 </Navigator>
                 <MaterialToolbar
+                    ref={'TOOLBAR'}
                     title={this.state.title}
                     icon={navigator && navigator.isChild ? 'keyboard-backspace' : 'menu'}
                     onIconPress={() => navigator && navigator.isChild ? navigator.back() : this.onMenuPress()}
