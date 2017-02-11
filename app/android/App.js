@@ -17,11 +17,20 @@ import {
     Text,
 } from 'react-native';
 import Utils from '../Utils';
+/*新闻列表组件*/
 import News from '../component/News';
+/*便捷服务组件*/
 import Service from '../component/Service';
+/*新闻详情组件*/
 import NewsDetail from '../component/NewsDetail';
+/*小吐槽组件*/
 import Tucao from '../component/Tucao';
-import Personal from '../component/Personal'
+/*个人中心组件*/
+import Personal from '../component/Personal';
+/*天气查询模块*/
+import Weather from '../component/Weather';
+/*快递查询模块*/
+import Express from '../component/Express';
 import {Toolbar as MaterialToolbar, Avatar, COLOR, TYPO, Drawer} from 'react-native-material-design';
 export default class App extends Component {
     static propTypes = {};
@@ -62,6 +71,12 @@ export default class App extends Component {
                 break;
             case 'detail':
                 Component = NewsDetail;
+                break;
+            case 'express':
+                Component = Weather;
+                break;
+            case 'weather':
+                Component = Express;
                 break;
         }
         /*注意这里,将navigator作为属性props传递给各个场景的组件*/
@@ -168,8 +183,8 @@ export default class App extends Component {
     }
 }
 const styles = StyleSheet.create({
-    header:{
-        marginLeft:Utils.getScreenParam().size.width*0.2,
-        marginTop:Utils.getScreenParam().size.height*0.05
+    header: {
+        marginLeft: Utils.getScreenParam().size.width * 0.2,
+        marginTop: Utils.getScreenParam().size.height * 0.05
     }
 });

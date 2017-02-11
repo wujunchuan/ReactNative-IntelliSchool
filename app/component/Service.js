@@ -10,6 +10,7 @@ import {
     Text,
     View,
     ScrollView,
+    Platform,
     TouchableOpacity,
 } from 'react-native';
 /*天气查询模块*/
@@ -20,18 +21,19 @@ export default class Service extends Component {
     constructor(props) {
         super(props);
     }
-
     render() {
         return (
             <View style={styles.tabContent}>
                 <TouchableOpacity onPress={() => this.props.navigator.push({
                     component: Weather,
+                    name:'weather',
                     title: '天气预报'
                 })}>
                     <View style={styles.button}><Text style={styles.buttonText}>天气查询</Text></View>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => this.props.navigator.push({
                     component: Express,
+                    name:'express',
                     title: '快递查询'
                 })}>
                     <View style={styles.button}><Text style={styles.buttonText}>快递查询</Text></View>
