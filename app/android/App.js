@@ -53,6 +53,7 @@ export default class App extends Component {
                 true:不触发exitApp()
                 false:触发exitApp();
             */
+            this.refs['DRAWER'].closeDrawer();
             if (currentRoutes.length === 1) {
                 if(!this.lastBackPressed){
                     ToastAndroid.show('再按一次退出应用',ToastAndroid.SHORT);

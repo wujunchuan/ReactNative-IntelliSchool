@@ -17,6 +17,7 @@ import GuideNavigator from './app/component/GuideNavigator'
 import Entrance from './app/component/Entrance';
 import Util from './app/Utils';
 import App from './app/android/App';
+import Test from './app/component/Personal';
 export default class ReactNative_intelliSchool extends Component {
     constructor(props) {
         super(props);

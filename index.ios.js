@@ -75,7 +75,7 @@ class ReactNative_intelliSchool extends Component {
             if (this.state.showStart){
                 entrance = <Entrance hideThis={()=>this._hideEntrance()}/>
             }else{
-                entrance = <View style={styles.secondView}><Test/></View>
+                entrance = <View style={styles.secondView}><TabBar/></View>
             }
         }
 

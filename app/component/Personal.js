@@ -10,6 +10,7 @@ import {
     StyleSheet,
     Text,
     Image,
+    Platform,
     View,
     Dimensions,
     Button,
@@ -28,7 +29,6 @@ export default class Personal extends Component {
 
     render() {
         return (
-            <View>
                 <ScrollView
                     automaticallyAdjustContentInsets={false}
                     style={styles.scrollView}
@@ -51,14 +51,16 @@ export default class Personal extends Component {
                     <LineBlock/>{/*Line Block*/}
                     <View style={styles.block}>
                         <Item icon={require('../../img/icon/start_icon.png')} title="建议反馈"/>
-                        <Item icon={require('../../img/icon/more_icon.png')} title="关于我们" size={{height: 5}}
+                        <Item icon={require('../../img/icon/more_icon.png')} title="关于我们" size={{height: 6}}
                               isLast={true}/>
                     </View>
                     <LineBlock/>{/*Line Block*/}
-                    {/*Exit*/}
+                    <View style={styles.block}>
+                        {/*Exit*/}
+                        <Item icon={require('../../img/icon/tataquan_focus.png')} title="退出登录"/>
+                    </View>
+                    <LineBlock/>{/*Line Block*/}
                 </ScrollView>
-
-            </View>
         );
     };
 }
@@ -126,7 +128,11 @@ const avatar = StyleSheet.create({
     },
 });
 const styles = StyleSheet.create({
-    scrollView: {},
+    scrollView: {
+        backgroundColor:'#ffffff',
+        marginTop: Platform.OS==='ios'?64:56,
+        paddingBottom:Platform.OS === 'ios' ? 50 : 20
+    },
     container: {},
     lineBlock:{
         width:Dimensions.get('window').width,
