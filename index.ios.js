@@ -13,7 +13,7 @@ import GuideNavigator from './app/component/GuideNavigator'
 import Entrance from './app/component/Entrance';
 import Util from './app/Utils';
 import TabBar from  './app/ios/TabBar'
-
+import Test from './app/component/Service'
 
 class ReactNative_intelliSchool extends Component {
     constructor(props) {

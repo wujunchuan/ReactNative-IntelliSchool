@@ -27,6 +27,7 @@
 		7BCDBB21B2E84F029206C9A8 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B99382FD9EC04CA384162C10 /* Zocial.ttf */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		973D8CD787ED4A159DF988CB /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CC2E31011E664D3CA09E8AE5 /* MaterialIcons.ttf */; };
+		AE69D9821E4F02DA00C8E9AD /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = AE69D9811E4F02DA00C8E9AD /* Fonts */; };
 		BA04A28C880244F89D69523C /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D69283D435E4445E966E1B66 /* Entypo.ttf */; };
 		D000A83354B54333BF43125E /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 65400A15BEF64B28808A4827 /* Octicons.ttf */; };
 		DFAEC5AAE63B4DB485D94E0E /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D57787E291DF4E149267CD76 /* Foundation.ttf */; };
@@ -148,6 +149,7 @@
 		82CA9A0C40DE4BC5941165CE /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		917F137B3904433585B7A431 /* RNVectorIcons.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNVectorIcons.xcodeproj; path = "../node_modules/react-native-vector-icons/RNVectorIcons.xcodeproj"; sourceTree = "<group>"; };
+		AE69D9811E4F02DA00C8E9AD /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Fonts; path = "../node_modules/react-native-vector-icons/Fonts"; sourceTree = "<group>"; };
 		B99382FD9EC04CA384162C10 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		CC2E31011E664D3CA09E8AE5 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		D57787E291DF4E149267CD76 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
@@ -332,6 +334,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				AE69D9811E4F02DA00C8E9AD /* Fonts */,
 				13B07FAE1A68108700A75B9A /* ReactNative_intelliSchool */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* ReactNative_intelliSchoolTests */,
@@ -574,6 +577,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE69D9821E4F02DA00C8E9AD /* Fonts in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				BA04A28C880244F89D69523C /* Entypo.ttf in Resources */,

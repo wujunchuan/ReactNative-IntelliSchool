@@ -10,7 +10,7 @@ import {
     Text,
     View,
     ScrollView,
-    Platform,
+    Modal,
     TouchableOpacity,
 } from 'react-native';
 /*天气查询模块*/
@@ -20,6 +20,12 @@ import Express from './Express';
 export default class Service extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            modalVisible:false
+        };
+    }
+    setModalVisible(visible){
+        this.setState({modalVisible: visible})
     }
     render() {
         return (
@@ -38,7 +44,25 @@ export default class Service extends Component {
                 })}>
                     <View style={styles.button}><Text style={styles.buttonText}>快递查询</Text></View>
                 </TouchableOpacity>
+                <TouchableOpacity onPress={()=>{
+                    this.setModalVisible(true);
+                }}>
+                    <View style={styles.button}><Text style={styles.buttonText}>显示Modal</Text></View>
+                </TouchableOpacity>
 
+                <Modal
+                    animationType={'fade'}//显示动画
+                    transparent={true}//透明
+                    visible={this.state.modalVisible}//是否显示
+                >
+                    <View>
+                        <TouchableOpacity onPress={()=>{
+                            this.setModalVisible(false);
+                        }}>
+                            <Text style={{fontSize:30}}>Close</Text>
+                        </TouchableOpacity>
+                    </View>
+                </Modal>
             </View>
         )
     };
