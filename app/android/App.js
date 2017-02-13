@@ -11,6 +11,7 @@ import {
     StatusBar,
     DrawerLayoutAndroid,
     BackAndroid,
+    ToastAndroid,
     ScrollView,
     Navigator,
     Image,
@@ -39,14 +40,38 @@ export default class App extends Component {
         super(props);
         this.state = {
             title: '学院新闻',
-            route: 'news'
+            route: 'news',
+            isChild:false
         };
         StatusBar.setHidden(false);
+        let that = this;
         StatusBar.setBackgroundColor('rgba(33, 151, 244, 1)', true);
         BackAndroid.addEventListener('hardwareBackPress', () => {
-            if (this.state.navigator.getCurrentRoutes().length === 1) {
-                return false;
+            let currentRoutes = this.state.navigator.getCurrentRoutes();
+            /*
+                如果只剩下1个路由,就显示 *再按一次退出应用*的效果
+                true:不触发exitApp()
+                false:触发exitApp();
+            */
+            if (currentRoutes.length === 1) {
+                if(!this.lastBackPressed){
+                    ToastAndroid.show('再按一次退出应用',ToastAndroid.SHORT);
+                    this.lastBackPressed = Date.now();
+                    setTimeout(() => {
+                        this.lastBackPressed = null;
+                    }, 1500);
+                }else{
+                    if(new Date().getTime() - this.lastBackPressed<1500) {
+                        return false;//退出
+                    }
+                }
+                return true;
             }
+            /*更新ToolBar的标题*/
+            that.setState({
+                title:currentRoutes[currentRoutes.length-2].title,
+                isChild:currentRoutes[currentRoutes.length-2].isChild||false
+            });
             this.state.navigator.pop();
             return true;
         });
@@ -55,7 +80,6 @@ export default class App extends Component {
     renderScene = (router, navigator) => {
         let Component = null;
         this.state.navigator = navigator;
-        // console.log(this.refs['TOOLBAR']);
         switch (router.name) {
             case 'news':
                 Component = News;
@@ -90,16 +114,18 @@ export default class App extends Component {
     onNavPress(target) {
         /*为了避免路由栈中重复,在打开新页面前先判断一下是否已存在*/
         const lastIndex = this.state.navigator.getCurrentRoutes().length - 1;
-        if (this.state.navigator.getCurrentRoutes()[lastIndex].name === target) {
+        if (this.state.navigator.getCurrentRoutes()[lastIndex].name === target.route) {
             this.refs['DRAWER'].closeDrawer();
             return false;
         }
         this.state.navigator.push({
-            name: target
+            name: target.route,
+            title:target.title
         });
         /*使用state来区分当前激活状态*/
         this.setState({
-            route: target
+            title:target.title,
+            route: target.route
         });
         //关闭drawer
         this.refs['DRAWER'].closeDrawer();
@@ -121,39 +147,38 @@ export default class App extends Component {
                     </View>
                 </Drawer.Header>
                 <Drawer.Section
-                    items=
-                        {
-                            [
-                                {
-                                    icon: 'home',
-                                    value: '学院新闻',
-                                    active: !this.state.route || this.state.route === 'news',
-                                    onPress: () => this.onNavPress('news'),
-                                    onLongPress: () => this.onNavPress('news')
-                                },
-                                {
-                                    icon: 'message',
-                                    value: '小吐槽',
-                                    active: !this.state.route || this.state.route === 'xiaotucao',
-                                    onPress: () => this.onNavPress('xiaotucao'),
-                                    onLongPress: () => this.onNavPress('xiaotucao')
-                                },
-                                {
-                                    icon: 'search',
-                                    value: '便利服务',
-                                    active: !this.state.route || this.state.route === 'service',
-                                    onPress: () => this.onNavPress('service'),
-                                    onLongPress: () => this.onNavPress('service')
-                                },
-                                {
-                                    icon: 'settings',
-                                    value: '个人中心',
-                                    active: !this.state.route || this.state.route === 'user',
-                                    onPress: () => this.onNavPress('user'),
-                                    onLongPress: () => this.onNavPress('user')
-                                }
-                            ]
-                        }
+                    items = {
+                        [
+                            {
+                                icon: 'home',
+                                value: '学院新闻',
+                                active: !this.state.route || this.state.route === 'news',
+                                onPress: () => this.onNavPress({route:'news',title:'学院新闻'}),
+                                onLongPress: () => this.onNavPress({route:'news',title:'学院新闻'})
+                            },
+                            {
+                                icon: 'message',
+                                value: '小吐槽',
+                                active: !this.state.route || this.state.route === 'xiaotucao',
+                                onPress: () => this.onNavPress({route:'xiaotucao',title:'小吐槽'}),
+                                onLongPress: () => this.onNavPress({route:'xiaotucao',title:'小吐槽'})
+                            },
+                            {
+                                icon: 'search',
+                                value: '便利服务',
+                                active: !this.state.route || this.state.route === 'service',
+                                onPress: () => this.onNavPress({route:'service',title:'便捷服务'}),
+                                onLongPress: () => this.onNavPress({route:'service',title:'便捷服务'})
+                            },
+                            {
+                                icon: 'settings',
+                                value: '个人中心',
+                                active: !this.state.route || this.state.route === 'user',
+                                onPress: () => this.onNavPress({route:'user',title:'个人中心'}),
+                                onLongPress: () => this.onNavPress({route:'user',title:'个人中心'})
+                            }
+                        ]
+                    }
                 />
             </Drawer>
         );
@@ -166,7 +191,7 @@ export default class App extends Component {
                 renderNavigationView={() => navigationView}/*渲染Drawer的View*/
             >
                 <Navigator
-                    initialRoute={{name: 'news'}}
+                    initialRoute={{name: 'news',title:'学院新闻'}}
                     configureScene={this.configureScense}
                     renderScene={this.renderScene}
                 >
@@ -174,8 +199,10 @@ export default class App extends Component {
                 <MaterialToolbar
                     ref={'TOOLBAR'}
                     title={this.state.title}
-                    icon={navigator && navigator.isChild ? 'keyboard-backspace' : 'menu'}
-                    onIconPress={() => navigator && navigator.isChild ? navigator.back() : this.onMenuPress()}
+                    icon = {'menu'}
+                    onIconPress={() => this.onMenuPress()}
+                    //icon={this.state.isChild ? 'keyboard-backspace' : 'menu'}
+                    //onIconPress={() => this.state.isChild ? this.state.navigator.pop() : this.onMenuPress()}
                 />
 
             </DrawerLayoutAndroid>

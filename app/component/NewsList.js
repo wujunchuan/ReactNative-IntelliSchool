@@ -68,6 +68,7 @@ export default class NewsList extends Component {
                         component: NewsDetail,
                         name:'detail',//for android navigator
                         title: "新闻详情",
+                        isChild:'true',
                         passProps:{
                             sysId:rowData.sysId
                         }
