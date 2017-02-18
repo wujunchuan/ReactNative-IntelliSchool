@@ -10,22 +10,29 @@ import {
     Text,
     View,
     ScrollView,
-    Modal,
+    Image,
     TouchableOpacity,
 } from 'react-native';
 /*天气查询模块*/
 import Weather from './Weather';
 /*快递查询模块*/
 import Express from './Express';
+/*模态框组件*/
+import Modal from 'react-native-modalbox';
+/*Button组件*/
+import Button from 'react-native-button';
 export default class Service extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            modalVisible:false
+
         };
     }
-    setModalVisible(visible){
-        this.setState({modalVisible: visible})
+    /*Modal open callback function*/
+    onOpen(){
+    }
+    /*Modal close callback function*/
+    onClose(){
     }
     render() {
         return (
@@ -45,22 +52,40 @@ export default class Service extends Component {
                     <View style={styles.button}><Text style={styles.buttonText}>快递查询</Text></View>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={()=>{
-                    this.setModalVisible(true);
+                    this.refs.login.open();
                 }}>
                     <View style={styles.button}><Text style={styles.buttonText}>显示Modal</Text></View>
                 </TouchableOpacity>
 
                 <Modal
-                    animationType={'fade'}//显示动画
-                    transparent={true}//透明
-                    visible={this.state.modalVisible}//是否显示
+                    style={[styles.modal,{height: 270,width: 270}]}
+                    ref={"login"}
+                    position={"center"}
+                    isDisabled={false}
+                    swipeToClose={true}
+                    backdrop={true}
+                    onClosed={this.onClose}
+                    onOpened={this.onOpen}
+                    swipeThreshold={60}
+                    backdropOpacity={0.2}
                 >
-                    <View>
-                        <TouchableOpacity onPress={()=>{
-                            this.setModalVisible(false);
+                    <View style={{alignItems:'center'}}>
+                        <Image source={require('../../img/logo-3.png')} style={{width:240,height:35.29, marginBottom:18,
+                            marginTop:23
+                        }}/>
+                        <View style={{backgroundColor:'#fff',width:212,height:120, borderRadius:6, borderWidth:1,
+                            borderColor:'#979797'
                         }}>
-                            <Text style={{fontSize:30}}>Close</Text>
-                        </TouchableOpacity>
+
+                        </View>
+                        <Button
+                            style={styles.myButton}
+                            containerStyle={styles.myButtonContainer}
+                            onPress={()=>{
+                                console.log('click loging')
+                            }}>
+                             登录
+                        </Button>
                     </View>
                 </Modal>
             </View>
@@ -83,4 +108,30 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    modal: {
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        backgroundColor:'#75A5F6',
+        shadowColor: 'rgba(0,0,0,50)',
+        shadowOffset: {
+            width: 5,
+            height: 5
+        },
+        shadowRadius: 10,
+        shadowOpacity: 0.4,
+    },
+    myButton:{
+        fontSize: 13,
+        paddingVertical: 8,
+        color: 'white',
+        justifyContent:'center'
+    },
+    myButtonContainer:{
+        marginVertical:20,
+        paddingHorizontal: 61,
+        height:33,
+        overflow:'hidden',
+        borderRadius:6,
+        backgroundColor: '#4E78BE'
+    }
 });

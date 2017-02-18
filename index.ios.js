@@ -13,7 +13,7 @@ import GuideNavigator from './app/component/GuideNavigator'
 import Entrance from './app/component/Entrance';
 import Util from './app/Utils';
 import TabBar from  './app/ios/TabBar'
-import Test from './app/component/Personal'
+import Test from './app/component/Service'
 
 class ReactNative_intelliSchool extends Component {
     constructor(props) {
@@ -96,4 +96,4 @@ const styles = StyleSheet.create({
     }
 });
 
-AppRegistry.registerComponent('ReactNative_intelliSchool', () => ReactNative_intelliSchool);
+AppRegistry.registerComponent('ReactNative_intelliSchool', () => Test);

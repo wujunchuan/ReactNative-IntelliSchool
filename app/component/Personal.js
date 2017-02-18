@@ -13,7 +13,6 @@ import {
     Platform,
     View,
     Dimensions,
-    Button,
     ScrollView,
     TouchableOpacity
 } from 'react-native';
