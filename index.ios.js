@@ -96,4 +96,4 @@ const styles = StyleSheet.create({
     }
 });
 
-AppRegistry.registerComponent('ReactNative_intelliSchool', () => Test);
+AppRegistry.registerComponent('ReactNative_intelliSchool', () => ReactNative_intelliSchool);
