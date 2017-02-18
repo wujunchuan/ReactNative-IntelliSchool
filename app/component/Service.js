@@ -12,6 +12,7 @@ import {
     ScrollView,
     Image,
     Platform,
+    TextInput,
     TouchableOpacity,
 } from 'react-native';
 /*天气查询模块*/
@@ -26,7 +27,12 @@ import Utils from '../Utils';
 export default class Service extends Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            username:'请输入教务系统的学号',
+            password:'请输入教务系统的密码',
+            ma:'验证码',
+            isSecret:false
+        };
     }
 
     /*Modal open callback function*/
@@ -38,7 +44,7 @@ export default class Service extends Component {
     }
     render() {
         return (
-            <View style={styles.service}>
+            <ScrollView style={styles.service}>
                 <TouchableOpacity
                     activeOpacity={0.2}
                     style={{
@@ -106,11 +112,9 @@ export default class Service extends Component {
                     ref={"login"}
                     position={"center"}
                     isDisabled={false}
-                    swipeToClose={true}
                     backdrop={true}
                     onClosed={this.onClose}
                     onOpened={this.onOpen}
-                    swipeThreshold={60}
                     backdropOpacity={0.7}
                 >
                     <View style={{alignItems: 'center'}}>
@@ -118,10 +122,53 @@ export default class Service extends Component {
                             width: 240, height: 35.29, marginBottom: 18,
                             marginTop: 23
                         }}/>
-                        <View style={{
-                            backgroundColor: '#fff', width: 212, height: 120, borderRadius: 6, borderWidth: 1,
-                            borderColor: '#979797'
-                        }}>
+                        <View style={styles.infoContainer}>
+                            <View style={{flexDirection:'row', marginVertical:10}}>
+                                <Text style={{fontWeight:'bold', color:'#7D7D7D', fontSize:16}}>学号:</Text>
+                                <View style={{borderBottomColor:'#7D7D7D',borderBottomWidth:0.5}}>
+                                    <TextInput
+                                        style={{width:137,height:19,fontSize:12}} value={this.state.username}
+                                        onFocus={()=>{
+                                            this.setState({username:''})
+                                        }}
+                                        onChangeText={(state)=>{
+                                            this.setState({username:state})
+                                        }}
+                                    />
+                                </View>
+                            </View>
+                            <View style={{flexDirection:'row',marginVertical:10}}>
+                                <Text style={{fontWeight:'bold', color:'#7D7D7D',fontSize:16}}>密码:</Text>
+                                {/*这里有个坑,TextInput要实现单边边距的话,需要包在View内*/}
+                                <View style={{borderBottomColor:'#7D7D7D',borderBottomWidth:0.5}}>
+                                    <TextInput
+                                        secureTextEntry={this.state.isSecret}
+                                        style={{ width: 137, height: 19, fontSize: 12}}
+                                        value={this.state.password}
+                                        onFocus={()=>{
+                                            this.setState({password:'',isSecret:true})
+                                        }}
+                                        onChangeText={(state)=>{this.setState({password:state})}}
+                                    />
+                                </View>
+                            </View>
+                            <View style={{flexDirection:'row',marginVertical:10}}>
+                                <Text style={{fontWeight:'bold', color:'#7D7D7D',fontSize:16}}>验证码:</Text>
+                                {/*这里有个坑,TextInput要实现单边边距的话,需要包在View内*/}
+                                <View style={{borderBottomColor:'#7D7D7D',borderBottomWidth:0.5}}>
+                                    <TextInput style={{ width: 90, height: 19,fontSize:12}} value={this.state.ma}
+                                               onFocus={()=>{this.setState({ma:''})}}
+                                               onChangeText={(state)=>{this.setState({ma:state})}}
+                                    />
+                                </View>
+                                <Image
+                                    source={{uri:'https://dummyimage.com/72x27/d8d8d8/ffffff&text=wait'}}
+                                    style={{
+                                        width:60,
+                                        height:27
+                                    }}
+                                />
+                            </View>
 
                         </View>
                         <Button
@@ -135,15 +182,15 @@ export default class Service extends Component {
                         </Button>
                     </View>
                 </Modal>
-            </View>
+            </ScrollView>
         )
     };
 }
 
 const styles = StyleSheet.create({
     service:{
-        marginTop: Platform.OS==='ios'?64:56,
-        height:Utils.getScreenParam().size.height-100
+        // marginTop: Platform.OS==='ios'?64:56,
+        // height:Utils.getScreenParam().size.height-100
     },
     modal: {
         justifyContent: 'space-between',
@@ -156,6 +203,16 @@ const styles = StyleSheet.create({
         },
         shadowRadius: 10,
         shadowOpacity: 0.4,
+    },
+    infoContainer:{
+        backgroundColor: '#fff',
+        width: 212,
+        height: 120,
+        borderRadius: 6,
+        borderWidth: 1,
+        borderColor: '#979797',
+        justifyContent:'center',
+        alignItems:'center'
     },
     myButton: {
         fontSize: 13,
