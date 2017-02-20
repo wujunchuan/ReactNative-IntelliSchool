@@ -29,33 +29,81 @@ export default class Service extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            _viewState:'',
             username:'请输入教务系统的学号',
             password:'请输入教务系统的密码',
             ma:'验证码',
             isSecret:false,
+            isFirst:true,
             mapic:'http://api.caogfw.cn:10017/static/images/yanzheng.png'
         };
     }
 
     /*Modal open callback function*/
     _onOpen = () => {
-       alert('由于教务系统诸多限制,目前本系统只提供当前学期的成绩查询');
+        if(this.state.isFirst){
+            alert('由于教务系统诸多限制,目前本系统只提供当前学期的成绩查询');
+            this.setState({isFirst: false});//设置初次启动为false
+        }else{
+            //do nothing...
+        }
     };
 
     /*Modal close callback function*/
-    _onClose() {
+    _onClose = () => {
         Utils.get('/fangzheng/getpage', (data) => {
             AsyncStorage.setItem("viewState", data.viewState)
                 .then(() => {
                     console.log("存储成功!");
+                    this.setState({_viewState: data.viewState});
                 })
                 .catch((error) => {
                     console.log("捕获异常");
                     console.log(error);
                 }).done();
         });
+    };
+    /*发送登录请求*/
+    _login(){
+        //从AsyncStorage中获取_viewState作为参数 _viewState
+        AsyncStorage.getItem("viewState")
+            .then((value)=>{
+                if(value!==null){
+                    this.setState({
+                        _viewState:value
+                    });
+                    //获取到模拟登录所需要用到的参数,然后发送给后台
+                    let viewState = this.state._viewState;
+                    //从state中获取username用户名
+                    let username = this.state.username;
+                    //从state中获取password密码
+                    let password = this.state.password;
+                    //从state中获取ma验证码
+                    let ma = this.state.ma;
+                    Utils.post('/fangzheng/login', {
+                        viewState: viewState,
+                        username: username,
+                        password: password,
+                        ma: ma
+                    },function (response) {
+                        if(response.type==200){
+                           //跳转到成绩详情页面  并且将response.xh作为参数传递给下一个页面
+                            
+                        }else{
+                            alert('登录失败');
+                        }
+                    });
+                }else{
+                    console.warn("没有viewState记录");
+                }
+            })
+            .catch((error)=>{
+                console.error("读取viewState发生错误..");
+                console.log(error);
+            }).done();
+
+
     }
-    
     render() {
         return (
             <ScrollView style={styles.service}>
@@ -198,7 +246,7 @@ export default class Service extends Component {
                             style={styles.myButton}
                             containerStyle={styles.myButtonContainer}
                             onPress={() => {
-                                console.log('click loging')
+                                this._login();
                             }}>
                             登录
                         </Button>
