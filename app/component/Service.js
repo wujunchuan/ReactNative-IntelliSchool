@@ -13,6 +13,7 @@ import {
     Image,
     Platform,
     TextInput,
+    AsyncStorage,
     TouchableOpacity,
 } from 'react-native';
 /*天气查询模块*/
@@ -31,24 +32,37 @@ export default class Service extends Component {
             username:'请输入教务系统的学号',
             password:'请输入教务系统的密码',
             ma:'验证码',
-            isSecret:false
+            isSecret:false,
+            mapic:'http://api.caogfw.cn:10017/static/images/yanzheng.png'
         };
     }
 
     /*Modal open callback function*/
-    onOpen() {
-    }
+    _onOpen = () => {
+       alert('由于教务系统诸多限制,目前本系统只提供当前学期的成绩查询');
+    };
 
     /*Modal close callback function*/
-    onClose() {
+    _onClose() {
+        Utils.get('/fangzheng/getpage', (data) => {
+            AsyncStorage.setItem("viewState", data.viewState)
+                .then(() => {
+                    console.log("存储成功!");
+                })
+                .catch((error) => {
+                    console.log("捕获异常");
+                    console.log(error);
+                }).done();
+        });
     }
+    
     render() {
         return (
             <ScrollView style={styles.service}>
                 <TouchableOpacity
                     activeOpacity={0.2}
                     style={{
-                        marginTop:20
+                        marginTop: 20
                     }}
                     onPress={() => this.props.navigator.push({
                         component: Weather,
@@ -59,10 +73,11 @@ export default class Service extends Component {
                     <Image source={{uri: 'https://dummyimage.com/375x160/d8d8d8/ffffff&text=Weather'}}
                            style={{
                                width: Utils.getScreenParam().size.width,
-                               height:Utils.getScreenParam().size.height*.24
+                               height: Utils.getScreenParam().size.height * .24
                            }}/>
                 </TouchableOpacity>
-                <View style={{flexDirection:'row', flexWrap:'nowrap',justifyContent:'space-between', marginTop:10}}>
+                <View
+                    style={{flexDirection: 'row', flexWrap: 'nowrap', justifyContent: 'space-between', marginTop: 10}}>
                     <TouchableOpacity
                         activeOpacity={0.2}
                         onPress={() => this.props.navigator.push({
@@ -73,8 +88,8 @@ export default class Service extends Component {
                     >
                         <Image source={{uri: 'https://dummyimage.com/181x160/d8d8d8/ffffff&text=12306'}}
                                style={{
-                                   width: Utils.getScreenParam().size.width*.48,
-                                   height:Utils.getScreenParam().size.height*.24
+                                   width: Utils.getScreenParam().size.width * .48,
+                                   height: Utils.getScreenParam().size.height * .24
                                }}/>
                     </TouchableOpacity>
                     <TouchableOpacity
@@ -87,15 +102,15 @@ export default class Service extends Component {
                     >
                         <Image source={{uri: 'https://dummyimage.com/181x160/d8d8d8/ffffff&text=express'}}
                                style={{
-                                   width: Utils.getScreenParam().size.width*.48,
-                                   height:Utils.getScreenParam().size.height*.24
+                                   width: Utils.getScreenParam().size.width * .48,
+                                   height: Utils.getScreenParam().size.height * .24
                                }}/>
                     </TouchableOpacity>
                 </View>
                 <TouchableOpacity
                     activeOpacity={0.2}
                     style={{
-                        marginTop:20
+                        marginTop: 20
                     }}
                     onPress={() => {
                         this.refs.login.open();
@@ -104,7 +119,7 @@ export default class Service extends Component {
                     <Image source={{uri: 'https://dummyimage.com/375x160/d8d8d8/ffffff&text=Score'}}
                            style={{
                                width: Utils.getScreenParam().size.width,
-                               height:Utils.getScreenParam().size.height*.24
+                               height: Utils.getScreenParam().size.height * .24
                            }}/>
                 </TouchableOpacity>
                 <Modal
@@ -113,8 +128,8 @@ export default class Service extends Component {
                     position={"center"}
                     isDisabled={false}
                     backdrop={true}
-                    onClosed={this.onClose}
-                    onOpened={this.onOpen}
+                    onClosed={this._onClose}
+                    onOpened={this._onOpen}
                     backdropOpacity={0.7}
                 >
                     <View style={{alignItems: 'center'}}>
@@ -123,49 +138,56 @@ export default class Service extends Component {
                             marginTop: 23
                         }}/>
                         <View style={styles.infoContainer}>
-                            <View style={{flexDirection:'row', marginVertical:10}}>
-                                <Text style={{fontWeight:'bold', color:'#7D7D7D', fontSize:16}}>学号:</Text>
-                                <View style={{borderBottomColor:'#7D7D7D',borderBottomWidth:0.5}}>
+                            <View style={{flexDirection: 'row', marginVertical: 10}}>
+                                <Text style={{fontWeight: 'bold', color: '#7D7D7D', fontSize: 16}}>学号:</Text>
+                                <View style={{borderBottomColor: '#7D7D7D', borderBottomWidth: 0.5}}>
                                     <TextInput
-                                        style={{width:137,height:19,fontSize:12}} value={this.state.username}
-                                        onFocus={()=>{
-                                            this.setState({username:''})
+                                        style={{width: 137, height: 19, fontSize: 12}} value={this.state.username}
+                                        onFocus={() => {
+                                            this.setState({username: ''})
                                         }}
-                                        onChangeText={(state)=>{
-                                            this.setState({username:state})
+                                        onChangeText={(state) => {
+                                            this.setState({username: state})
                                         }}
                                     />
                                 </View>
                             </View>
-                            <View style={{flexDirection:'row',marginVertical:10}}>
-                                <Text style={{fontWeight:'bold', color:'#7D7D7D',fontSize:16}}>密码:</Text>
+                            <View style={{flexDirection: 'row', marginVertical: 10}}>
+                                <Text style={{fontWeight: 'bold', color: '#7D7D7D', fontSize: 16}}>密码:</Text>
                                 {/*这里有个坑,TextInput要实现单边边距的话,需要包在View内*/}
-                                <View style={{borderBottomColor:'#7D7D7D',borderBottomWidth:0.5}}>
+                                <View style={{borderBottomColor: '#7D7D7D', borderBottomWidth: 0.5}}>
                                     <TextInput
                                         secureTextEntry={this.state.isSecret}
-                                        style={{ width: 137, height: 19, fontSize: 12}}
+                                        style={{width: 137, height: 19, fontSize: 12}}
                                         value={this.state.password}
-                                        onFocus={()=>{
-                                            this.setState({password:'',isSecret:true})
+                                        onFocus={() => {
+                                            this.setState({password: '', isSecret: true})
                                         }}
-                                        onChangeText={(state)=>{this.setState({password:state})}}
+                                        onChangeText={(state) => {
+                                            this.setState({password: state})
+                                        }}
                                     />
                                 </View>
                             </View>
-                            <View style={{flexDirection:'row',marginVertical:10}}>
-                                <Text style={{fontWeight:'bold', color:'#7D7D7D',fontSize:16}}>验证码:</Text>
+                            <View style={{flexDirection: 'row', marginVertical: 10}}>
+                                <Text style={{fontWeight: 'bold', color: '#7D7D7D', fontSize: 16}}>验证码:</Text>
                                 {/*这里有个坑,TextInput要实现单边边距的话,需要包在View内*/}
-                                <View style={{borderBottomColor:'#7D7D7D',borderBottomWidth:0.5}}>
-                                    <TextInput style={{ width: 90, height: 19,fontSize:12}} value={this.state.ma}
-                                               onFocus={()=>{this.setState({ma:''})}}
-                                               onChangeText={(state)=>{this.setState({ma:state})}}
+                                <View style={{borderBottomColor: '#7D7D7D', borderBottomWidth: 0.5}}>
+                                    <TextInput style={{width: 90, height: 19, fontSize: 12}} value={this.state.ma}
+                                               onFocus={() => {
+                                                   this.setState({ma: ''})
+                                               }}
+                                               onChangeText={(state) => {
+                                                   this.setState({ma: state})
+                                               }}
                                     />
                                 </View>
                                 <Image
-                                    source={{uri:'https://dummyimage.com/72x27/d8d8d8/ffffff&text=wait'}}
+                                    ref={'ma'}
+                                    source={{uri: this.state.mapic}}
                                     style={{
-                                        width:60,
-                                        height:27
+                                        width: 60,
+                                        height: 27
                                     }}
                                 />
                             </View>
@@ -183,10 +205,9 @@ export default class Service extends Component {
                     </View>
                 </Modal>
             </ScrollView>
-        )
+        );
     };
 }
-
 const styles = StyleSheet.create({
     service:{
         // marginTop: Platform.OS==='ios'?64:56,

@@ -11,7 +11,7 @@ import {
 
 import GuideNavigator from './app/component/GuideNavigator'
 import Entrance from './app/component/Entrance';
-import Util from './app/Utils';
+import Utils from './app/Utils';
 import TabBar from  './app/ios/TabBar'
 import Test from './app/component/Service'
 
@@ -36,10 +36,21 @@ class ReactNative_intelliSchool extends Component {
         StatusBar.setBarStyle(1); //What's the fuck !? See https://github.com/fbsamples/f8app/issues/85
     }
     /**
-     * 从AsyncStorage中取是否为第一次登陆的标记
+     * 从AsyncStorage中取是否为第一次登陆的标记,也获取下教务验证码
      * @private
      */
     _getFirst(){
+        Utils.get('/fangzheng/getpage', (data) => {
+            AsyncStorage.setItem("viewState", data.viewState)
+                .then(() => {
+                    console.log("存储成功:" + data.viewState);
+                })
+                .catch((error) => {
+                    console.log("捕获异常");
+                    console.log(error);
+                }).done();
+            console.log(data);
+        });
         AsyncStorage.getItem("isfirst")
             .then((value)=>{
                 if(value!==null){
@@ -80,7 +91,7 @@ class ReactNative_intelliSchool extends Component {
         }
 
         return (
-            <View style={{width: Util.getScreenParam().size.width, height: Util.getScreenParam().size.height}}>
+            <View style={{width: Utils.getScreenParam().size.width, height: Utils.getScreenParam().size.height}}>
                 {entrance}
             </View>
 
@@ -91,8 +102,8 @@ class ReactNative_intelliSchool extends Component {
 const styles = StyleSheet.create({
     secondView: {
         position: 'absolute',
-        width: Util.getScreenParam().size.width,
-        height: Util.getScreenParam().size.height,
+        width: Utils.getScreenParam().size.width,
+        height: Utils.getScreenParam().size.height,
     }
 });
 

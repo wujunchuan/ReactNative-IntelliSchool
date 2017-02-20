@@ -15,7 +15,7 @@ import {
 } from 'react-native';
 import GuideNavigator from './app/component/GuideNavigator'
 import Entrance from './app/component/Entrance';
-import Util from './app/Utils';
+import Utils from './app/Utils';
 import App from './app/android/App';
 import Test from './app/component/Personal';
 export default class ReactNative_intelliSchool extends Component {
@@ -37,10 +37,20 @@ export default class ReactNative_intelliSchool extends Component {
     }
 
     /**
-     * 从AsyncStorage中取是否为第一次登陆的标记
+     * 从AsyncStorage中取是否为第一次登陆的标记,也获取下教务验证码
      * @private
      */
     _getFirst() {
+        Utils.get('/fangzheng/getpage', (data) => {
+            AsyncStorage.setItem("viewState", data.viewState)
+                .then(() => {
+                    console.log("存储成功:" + data.viewState);
+                })
+                .catch((error) => {
+                    console.log("捕获异常");
+                    console.log(error);
+                }).done();
+        });
         AsyncStorage.getItem("isfirst")
             .then((value) => {
                 if (value !== null) {
@@ -87,7 +97,7 @@ export default class ReactNative_intelliSchool extends Component {
         }
 
         return (
-            <View style={{width: Util.getScreenParam().size.width, height: Util.getScreenParam().size.height}}>
+            <View style={{width: Utils.getScreenParam().size.width, height: Utils.getScreenParam().size.height}}>
                 {entrance}
             </View>
         );
@@ -98,8 +108,8 @@ export default class ReactNative_intelliSchool extends Component {
 const styles = StyleSheet.create({
     secondView: {
         position: 'absolute',
-        width: Util.getScreenParam().size.width,
-        height: Util.getScreenParam().size.height,
+        width: Utils.getScreenParam().size.width,
+        height: Utils.getScreenParam().size.height,
     }
 });
 

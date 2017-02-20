@@ -16,16 +16,21 @@ import {
 export default class NewsDetail extends Component {
     constructor(props) {
         super(props);
+        //this._testJSON();
     }
 
     render() {
         return (
-            <View style={styles.tabContent}>
-                <TouchableOpacity onPress={()=>this._getWeatherJSON()}>
-                    <View style={styles.button}><Text style={styles.buttonText}>获取天气json数据</Text></View>
-                </TouchableOpacity>
+            <View style={styles.container}>
+
             </View>
         );
+    }
+    _testJSON(){
+        /*uri:http://7xvzr6.com1.z0.glb.clouddn.com/weather.json*/
+        fetch('http://7xvzr6.com1.z0.glb.clouddn.com/weather.json').then((value)=>{
+            console.log(value);
+        })
     }
     _getWeatherJSON() {
         const params = {
@@ -45,17 +50,12 @@ export default class NewsDetail extends Component {
 }
 
 const styles = StyleSheet.create({
-    navigator: {
-        flex: 1,
-    },
     container: {
-        flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: '#F5FCFF',
     },
     tabContent: {
-        flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
     },
