@@ -49,7 +49,7 @@ export default class Service extends Component {
             alert('由于教务系统诸多限制,目前本系统只提供当前学期的成绩查询');
             this.setState({isFirst: false});//设置初次启动为false
         }else{
-            //do nothing...
+            //don't do anything....
         }
     };
 
@@ -104,6 +104,7 @@ export default class Service extends Component {
                                 title: '当前学期成绩'
                             });
                         }else{
+                            alert(response.message);
                             this.setState({isLoading: false});
                         }
                     });
