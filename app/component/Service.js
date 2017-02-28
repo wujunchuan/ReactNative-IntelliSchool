@@ -24,11 +24,15 @@ import Express from './Express';
 import Modal from 'react-native-modalbox';
 /*Button组件*/
 import Button from 'react-native-button';
+/*成绩详情页*/
+import ScoreDetail from './ScoreDetail';
+import Spinner from 'react-native-loading-spinner-overlay';
 import Utils from '../Utils';
 export default class Service extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            isLoading:false,
             _viewState:'',
             username:'请输入教务系统的学号',
             password:'请输入教务系统的密码',
@@ -65,6 +69,8 @@ export default class Service extends Component {
     };
     /*发送登录请求*/
     _login(){
+        this.setState({isLoading: true});
+        this.refs.login.close();
         //从AsyncStorage中获取_viewState作为参数 _viewState
         AsyncStorage.getItem("viewState")
             .then((value)=>{
@@ -85,12 +91,20 @@ export default class Service extends Component {
                         username: username,
                         password: password,
                         ma: ma
-                    },function (response) {
+                    }, (response)=> {
                         if(response.type==200){
                            //跳转到成绩详情页面  并且将response.xh作为参数传递给下一个页面
-                            
+                            this.setState({isLoading: false});
+                            this.props.navigator.push({
+                                component: ScoreDetail,
+                                name: 'scoreDetail',
+                                passProps:{
+                                    xh:response.xh,
+                                },
+                                title: '当前学期成绩'
+                            });
                         }else{
-                            alert('登录失败');
+                            this.setState({isLoading: false});
                         }
                     });
                 }else{
@@ -106,7 +120,9 @@ export default class Service extends Component {
     }
     render() {
         return (
+
             <ScrollView style={styles.service}>
+                <Spinner visible={this.state.isLoading}/>
                 <TouchableOpacity
                     activeOpacity={0.2}
                     style={{
