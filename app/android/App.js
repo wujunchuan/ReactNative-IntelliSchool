@@ -105,7 +105,7 @@ export default class App extends Component {
                 break;
         }
         /*注意这里,将navigator作为属性props传递给各个场景的组件*/
-        return <Component navigator={navigator}/>;
+        return <Component  {...router.passProps} navigator={navigator} router={router}/>;
     };
 
     configureScense(route, routeStack) {
