@@ -15,7 +15,7 @@ import {
 } from 'react-native';
 import Utils from '../Utils';
 import Spinner from 'react-native-loading-spinner-overlay';
-export default class NewsDetail extends Component {
+export default class WeatherDetail extends Component {
     constructor(props) {
         super(props);
         this.state = {

@@ -29,7 +29,7 @@ import Tucao from '../component/Tucao';
 /*个人中心组件*/
 import Personal from '../component/Personal';
 /*天气查询模块*/
-import Weather from '../component/Weather';
+import Weather from '../component/WeatherDetail';
 /*快递查询模块*/
 import Express from '../component/Express';
 import {Toolbar as MaterialToolbar, Avatar, COLOR, TYPO, Drawer} from 'react-native-material-design';

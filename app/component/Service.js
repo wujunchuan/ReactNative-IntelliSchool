@@ -17,7 +17,7 @@ import {
     TouchableOpacity,
 } from 'react-native';
 /*天气查询模块*/
-import Weather from './Weather';
+import WeatherDetail from './WeatherDetail';
 /*快递查询模块*/
 import Express from './Express';
 /*模态框组件*/
@@ -130,7 +130,7 @@ export default class Service extends Component {
                         marginTop: 20
                     }}
                     onPress={() => this.props.navigator.push({
-                        component: Weather,
+                        component: WeatherDetail,
                         name: 'weather',
                         title: '天气预报'
                     })}
@@ -146,7 +146,7 @@ export default class Service extends Component {
                     <TouchableOpacity
                         activeOpacity={0.2}
                         onPress={() => this.props.navigator.push({
-                            component: Weather,
+                            component: WeatherDetail,
                             name: 'weather',
                             title: '天气预报'
                         })}

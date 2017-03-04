@@ -90,17 +90,6 @@ export default class ScoreDetail extends Component {
                 </View>
             </View>
         );
-
-        {/*
-            <View style={styles.container}>
-                <Spinner visible={this.state.isLoading}/>
-                <Text>学号:{this.state.info.studentId}</Text>
-                <Text>姓名:{this.state.info.name}</Text>
-                <Text>学院:{this.state.info.campus}</Text>
-                <Text>专业:{this.state.info.grade}</Text>
-                <Text>班级:{this.state.info.classes}</Text>
-            </View>
-*/}
     }
 }
 const styles = StyleSheet.create({
