@@ -10,6 +10,7 @@ import {
     Text,
     View,
     ScrollView,
+    Image,
     TouchableOpacity,
 } from 'react-native';
 import Utils from '../Utils';
@@ -37,7 +38,6 @@ export default class NewsDetail extends Component {
                 },//今日天气
             }
         };
-        //this._testJSON();
         this._getWeatherJSON('厦门');
     }
 
@@ -47,37 +47,59 @@ export default class NewsDetail extends Component {
         let sk = this.state.weather.sk;
         let future = this.state.weather.future;
         return (
-            <View style={styles.container}>
+            <View style={styles.container} >
                 <Spinner visible={loading}/>
-                <Text>时间:{today.date_y} {today.week}  {sk.time} </Text>
-                <Text>地点:{today.city} </Text>
-                <Text>建议:{today.dressing_advice}</Text>
-                <Text>温度区间:{today.temperature}</Text>
-                <Text>当前温度:{sk.temp}℃</Text>
-                <Text>1天气符号:{today.weather_id.fa}</Text>
-                <Text>2天气符号:{today.weather_id.fb}</Text>
-                <Text>power by 中国气象局</Text>
-                {Object.keys(future).map((name, index)=>{
-                    let day = this.state.weather.future[name];
-                    return (
-                        <View key={index}>
-                            <Text>temperature:{day.temperature}</Text>
-                            <Text>weather:{day.weather}</Text>
-                            <Text>weather图标1:{day.weather_id.fa}</Text>
-                            <Text>weather图标2:{day.weather_id.fb}</Text>
-                            <Text>week:{day.week}</Text>
-                        </View>
-                    )
-                })}
+                <View style={styles.upperContainer}>
+                    <View>
+                        <Text style={styles.address}>{today.city}</Text>
+                    </View>
+                    <View style={styles.today}>
+                        <Image
+                            source={{uri: `http://static.caogfw.cn/campus/weather/${today.weather_id.fa}.png`}}
+                            style={{
+                                width:120,
+                                height:120
+                            }}
+                        />
+                        <Text style={styles.todayTemp}>{sk.temp}℃</Text>
+                    </View>
+                    <View style={{flexDirection:'column', alignItems:'center', justifyContent:'space-between'}}>
+                        <Text style={styles.todayWeahter}>{today.weather}</Text>
+                        <Text style={styles.todayRange}>{today.temperature}</Text>
+                        <Text style={styles.todayAdvice}>{today.dressing_advice}</Text>
+                    </View>
+                    <View style={{flexDirection: 'row',marginTop:10,justifyContent: 'space-around'}}>
+                        <Text style={styles.todayTime}>                          </Text>
+                        <Text style={styles.todayTime}>{today.date_y} {today.week}  {sk.time} </Text>
+                    </View>
+                </View>
+                <View style={styles.belowContainer}>
+                    <ScrollView style={{marginBottom:50, marginTop:-8, paddingBottom:50}}>
+                        <Text style={{fontSize: 8, color:'#fff'}}>power by 中国气象局</Text>
+                        {Object.keys(future).map((name, index)=>{
+                            let day = this.state.weather.future[name];
+                            return (
+                                <View key={index} style={{flexDirection:'row',alignItems:'center', justifyContent: 'space-between',
+                                    borderBottomColor:'#fff', borderBottomWidth:Utils.getScreenParam().ratio*.25,
+                                    marginVertical:2,width:305,height:30}}>
+                                    <Text style={[styles.featureFont]}>{day.week}</Text>
+                                    <Image
+                                        source={{uri: `http://static.caogfw.cn/campus/weather/${day.weather_id.fa}.png`}}
+                                        style={{
+                                            width:17,
+                                            height:17,
+                                            marginLeft:30
+                                        }}
+                                    />
+                                    <Text style={styles.featureFont}>{day.temperature}</Text>
+                                </View>
+                            );
+                        })}
+                    </ScrollView>
+                </View>
             </View>
         );
-    }
 
-    _testJSON() {
-        /*uri:http://7xvzr6.com1.z0.glb.clouddn.com/weather.json*/
-        fetch('http://7xvzr6.com1.z0.glb.clouddn.com/weather.json').then((value) => {
-            console.log(value);
-        })
     }
 
     _getWeatherJSON(cityname) {
@@ -98,13 +120,66 @@ export default class NewsDetail extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF',
-        marginTop:100
+        flexDirection:'column',
+        paddingBottom:50
     },
-    tabContent: {
+    upperContainer:{
+        marginTop:60,
+        flexDirection:'column',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent:'center',
+        width:Utils.getScreenParam().size.width,
+        height:Utils.getScreenParam().size.height*.5,
+        backgroundColor:'#66D4FF',
+        padding:20
     },
+    belowContainer:{
+        flexDirection:'column',
+        justifyContent:'center',
+        alignItems:'center',
+        backgroundColor: '#FFA9A9',
+        width:Utils.getScreenParam().size.width,
+        height:Utils.getScreenParam().size.height*.5,
+        padding:8
+    },
+    address:{
+        fontSize:36,
+        color:'#fff'
+    },
+    today:{
+        flexDirection:'row',
+        alignItems:'center'
+    },
+    todayIcon:{
+
+    },
+    todayTemp:{
+        fontSize:72,
+        color:'#fff',
+    },
+    todayWeahter:{
+        fontSize:24,
+        marginVertical:2,
+
+        color:'#fff'
+    },
+    todayRange:{
+        fontSize:12,
+        marginVertical:2,
+        color:'#fff'
+    },
+    todayAdvice:{
+        fontSize:13,
+        marginVertical:2,
+        lineHeight:18,
+        color:'#fff'
+    },
+    todayTime:{
+        fontSize:13,
+        color:'#fff'
+    },
+    featureFont:{
+        fontSize:12,
+        color:'#fff'
+    }
 });
