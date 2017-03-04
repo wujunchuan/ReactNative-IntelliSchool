@@ -4,12 +4,14 @@
  * @date :  2017/2/28
  */
 import React, {Component} from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, View, Text,ScrollView} from 'react-native';
 import Utils from './../Utils';
 import Spinner from 'react-native-loading-spinner-overlay';
 
 export default class ScoreDetail extends Component {
-    static defaultProps = {};
+    static defaultProps = {
+        xh:'1321152232'
+    };
     static propTypes = {};
 
     constructor(props) {
@@ -52,18 +54,85 @@ export default class ScoreDetail extends Component {
         return (
             <View style={styles.container}>
                 <Spinner visible={this.state.isLoading}/>
-                <Text>Hello world!props:{this.props.xh}</Text>
+                <View style={styles.upperContainer}>
+                    <View style={styles.personInfo}>
+                        <Text style={[styles.upperFontStyle]}>{this.state.info.studentId}</Text>
+                        <Text style={[styles.upperFontStyle]}>{this.state.info.name}</Text>
+                    </View>
+                    <View style={styles.personInfo}>
+                        <Text style={[styles.upperFontStyle,{fontSize:12}]}>{this.state.info.campus}</Text>
+                        <Text style={[styles.upperFontStyle,{fontSize:12}]}>{this.state.info.classes}</Text>
+                    </View>
+                </View>
+                <View style={styles.belowContainer}>
+                    <View style={{flexDirection:'row', justifyContent:'space-between', marginHorizontal:18, marginTop:20}}>
+                        <Text style={styles.tableTitle}>科目名称/学分</Text>
+                        <Text style={styles.tableTitle}>成绩</Text>
+                    </View>
+                    <ScrollView
+                        style={styles.scoreWrapper}
+                        //坑爹 automaticallyAdjustContentInsets see:http://stackoverflow.com/questions/18967859/ios7-uiscrollview-offset-in-uinavigationcontroller
+                        automaticallyAdjustContentInsets={false}
+                    >
+                        <View style={styles.scoreItem}>
+                            <Text>综合项目实训(2.0)</Text>
+                            <Text>69分</Text>{/*分是自己加上去的*/}
+                        </View>
+                        <View style={styles.scoreItem}>
+                            <Text>管理与沟通(2.0)</Text>
+                            <Text>87分</Text>{/*分是自己加上去的*/}
+                        </View>
+                        <View style={styles.scoreItem}>
+                            <Text>基于Android平台的游戏开发(3.5)</Text>
+                            <Text>79分</Text>{/*分是自己加上去的*/}
+                        </View>
+                    </ScrollView>
+                </View>
+            </View>
+        );
+
+        {/*
+            <View style={styles.container}>
+                <Spinner visible={this.state.isLoading}/>
                 <Text>学号:{this.state.info.studentId}</Text>
                 <Text>姓名:{this.state.info.name}</Text>
                 <Text>学院:{this.state.info.campus}</Text>
-                <Text>:{this.state.info.grade}</Text>
-                <Text>:{this.state.info.classes}</Text>
+                <Text>专业:{this.state.info.grade}</Text>
+                <Text>班级:{this.state.info.classes}</Text>
             </View>
-        );
+*/}
     }
 }
 const styles = StyleSheet.create({
     container: {
-        marginVertical: 100
+        marginTop:56
+    },
+    upperContainer:{
+        paddingHorizontal: 20,
+        paddingVertical:10,
+        backgroundColor:'#1c95e0',
+    },
+    upperFontStyle:{
+        color:'#fff',
+        fontSize:14,
+        lineHeight:28
+    },
+    personInfo:{
+        flexDirection:'row',
+        justifyContent:'space-between'
+    },
+    scoreWrapper:{
+        paddingHorizontal: 20,
+        paddingVertical:10,
+        height:Utils.getScreenParam().size.height
+    },
+    tableTitle:{
+        fontSize: 16,
+        fontWeight:'900'
+    },
+    scoreItem:{
+        flexDirection:'row',
+        justifyContent:'space-between',
+        marginVertical:5
     }
 });

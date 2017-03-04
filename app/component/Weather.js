@@ -74,7 +74,10 @@ export default class NewsDetail extends Component {
                     </View>
                 </View>
                 <View style={styles.belowContainer}>
-                    <ScrollView style={{marginBottom:50, marginTop:-8, paddingBottom:50}}>
+                    <ScrollView
+                        style={{marginTop:-8, marginBottom:100}}
+                        automaticallyAdjustContentInsets={false}
+                    >
                         <Text style={{fontSize: 8, color:'#fff'}}>power by 中国气象局</Text>
                         {Object.keys(future).map((name, index)=>{
                             let day = this.state.weather.future[name];
@@ -148,7 +151,7 @@ const styles = StyleSheet.create({
     },
     today:{
         flexDirection:'row',
-        alignItems:'center'
+        alignItems:'center',
     },
     todayIcon:{
 
@@ -156,6 +159,7 @@ const styles = StyleSheet.create({
     todayTemp:{
         fontSize:72,
         color:'#fff',
+        justifyContent:'flex-end'
     },
     todayWeahter:{
         fontSize:24,
