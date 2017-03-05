@@ -26,6 +26,7 @@ import Modal from 'react-native-modalbox';
 import Button from 'react-native-button';
 /*成绩详情页*/
 import ScoreDetail from './ScoreDetail';
+import Dormitory from './Dormitory';
 import Spinner from 'react-native-loading-spinner-overlay';
 import Utils from '../Utils';
 export default class Service extends Component {
@@ -146,12 +147,12 @@ export default class Service extends Component {
                     <TouchableOpacity
                         activeOpacity={0.2}
                         onPress={() => this.props.navigator.push({
-                            component: WeatherDetail,
-                            name: 'weather',
-                            title: '天气预报'
+                            component: Dormitory,
+                            name: 'dormitory',
+                            title: '宿舍电量查询'
                         })}
                     >
-                        <Image source={{uri: 'https://dummyimage.com/181x160/d8d8d8/ffffff&text=12306'}}
+                        <Image source={{uri: 'https://dummyimage.com/181x160/d8d8d8/ffffff&text=room'}}
                                style={{
                                    width: Utils.getScreenParam().size.width * .48,
                                    height: Utils.getScreenParam().size.height * .24
@@ -187,6 +188,37 @@ export default class Service extends Component {
                                height: Utils.getScreenParam().size.height * .24
                            }}/>
                 </TouchableOpacity>
+                <View
+                    style={{flexDirection: 'row', flexWrap: 'nowrap', justifyContent: 'space-between', marginTop: 10}}>
+                    <TouchableOpacity
+                        activeOpacity={0.2}
+                        onPress={() => this.props.navigator.push({
+                            component: Dormitory,
+                            name: 'dormitory',
+                            title: '宿舍电量查询'
+                        })}
+                    >
+                        <Image source={{uri: 'https://dummyimage.com/181x160/d8d8d8/ffffff&text=ecart'}}
+                               style={{
+                                   width: Utils.getScreenParam().size.width * .48,
+                                   height: Utils.getScreenParam().size.height * .24
+                               }}/>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        activeOpacity={0.2}
+                        onPress={() => this.props.navigator.push({
+                            component: Express,
+                            name: 'express',
+                            title: '快递查询'
+                        })}
+                    >
+                        <Image source={{uri: 'https://dummyimage.com/181x160/d8d8d8/ffffff&text=12306'}}
+                               style={{
+                                   width: Utils.getScreenParam().size.width * .48,
+                                   height: Utils.getScreenParam().size.height * .24
+                               }}/>
+                    </TouchableOpacity>
+                </View>
                 <Modal
                     style={[styles.modal, {height: 270, width: 270}]}
                     ref={"login"}
