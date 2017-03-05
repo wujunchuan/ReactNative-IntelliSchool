@@ -35,7 +35,7 @@ export default class Utils {
      * @param data
      * @param callback
      */
-    static post(url, data, callback) {
+    static post(url, data, callback,errorCallback=()=>{}) {
         const fetchOptions = {
             method: 'POST',
             headers: {
@@ -50,13 +50,17 @@ export default class Utils {
             })
             .then((responseData) => {
                 callback(responseData);
+            })
+            .catch((error)=>{
+                errorCallback(error);
+                console.log('[Fetch Error' + error.message);
             });
     }
 
     /**
      * 对get方法的封装,底层是fetch方法
      */
-    static get(url,callback){
+    static get(url,callback,errorCallback=()=>{}){
         const fetchOptions = {
             method:'GET'
         };
@@ -69,6 +73,7 @@ export default class Utils {
                 callback(responseData);
             })
             .catch((error)=>{
+                errorCallback(error);
                 console.log('[FETCH ERROR]'+error.message);
             });
     }

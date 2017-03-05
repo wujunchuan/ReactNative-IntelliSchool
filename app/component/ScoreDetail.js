@@ -46,7 +46,6 @@ export default class ScoreDetail extends Component {
                 },
                 score:scoreInfo//成绩
             });
-            console.log(data);
         });
     };
 
@@ -99,7 +98,7 @@ const styles = StyleSheet.create({
     upperContainer:{
         paddingHorizontal: 20,
         paddingVertical:10,
-        backgroundColor:'#1c95e0',
+        backgroundColor:'#4e78be',
     },
     upperFontStyle:{
         color:'#fff',

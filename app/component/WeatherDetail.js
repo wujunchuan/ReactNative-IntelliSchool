@@ -14,6 +14,7 @@ import {
     TouchableOpacity,
 } from 'react-native';
 import Utils from '../Utils';
+import Toast, {DURATION} from 'react-native-easy-toast';
 import Spinner from 'react-native-loading-spinner-overlay';
 export default class WeatherDetail extends Component {
     constructor(props) {
@@ -100,6 +101,10 @@ export default class WeatherDetail extends Component {
                         })}
                     </ScrollView>
                 </View>
+                <Toast ref="toast"
+                       position='center'
+                       style={{backgroundColor: '#FF74B9', opacity: 0.9, width: 210}}
+                />
             </View>
         );
 
@@ -116,6 +121,11 @@ export default class WeatherDetail extends Component {
                         today: data.result.today
                     }
                 });
+        },(error)=>{
+            this.setState({
+                isLoading: false
+            });
+            this.refs.toast.show(`查询失败,请检查卡号是否正确`,1000);
         });
     }
 

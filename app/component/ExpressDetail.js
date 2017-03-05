@@ -90,6 +90,11 @@ export default class Express extends Component {
                 });
                 this.refs.toast.show(`${data.reason},code:${data.error_code}`,1000);
             }
+        },(error)=>{
+            this.setState({
+                isLoading: false,
+            });
+            this.refs.toast.show(`逻辑异常,请稍后再试`,1000);
         });
     }
 }

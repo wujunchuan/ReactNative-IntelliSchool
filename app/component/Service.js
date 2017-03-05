@@ -27,6 +27,7 @@ import Button from 'react-native-button';
 /*成绩详情页*/
 import ScoreDetail from './ScoreDetail';
 import Dormitory from './Dormitory';
+import Ecard from './Ecard';
 import Spinner from 'react-native-loading-spinner-overlay';
 import Utils from '../Utils';
 export default class Service extends Component {
@@ -105,9 +106,10 @@ export default class Service extends Component {
                                 title: '当前学期成绩'
                             });
                         }else{
-                            alert(response.message);
                             this.setState({isLoading: false});
                         }
+                    },(error)=>{
+                        this.setState({isLoading: false});
                     });
                 }else{
                     console.warn("没有viewState记录");
@@ -193,9 +195,9 @@ export default class Service extends Component {
                     <TouchableOpacity
                         activeOpacity={0.2}
                         onPress={() => this.props.navigator.push({
-                            component: Dormitory,
-                            name: 'dormitory',
-                            title: '宿舍电量查询'
+                            component: Ecard,
+                            name: 'ecard',
+                            title: 'E通卡查询'
                         })}
                     >
                         <Image source={{uri: 'https://dummyimage.com/181x160/d8d8d8/ffffff&text=ecart'}}
