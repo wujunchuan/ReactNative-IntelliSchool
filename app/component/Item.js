@@ -25,7 +25,7 @@ export default class Item extends Component {
 
   render() {
     return (
-      <TouchableOpacity style={[this.props.isLast?null:item.itemWithUnderline]} activeOpacity={0.3}>
+      <TouchableOpacity style={[this.props.isLast?null:item.itemWithUnderline]} activeOpacity={0.3} onPress={()=>{this.props.onPress()}}>
         <View style={item.itemContainer}>
           <Image
             source={this.props.icon}

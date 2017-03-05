@@ -17,6 +17,7 @@ import {
     TouchableOpacity
 } from 'react-native';
 import Item from '../component/Item';
+import About from './About';
 export default class Personal extends Component {
     constructor(props) {
         super(props);
@@ -49,9 +50,31 @@ export default class Personal extends Component {
                     </View>
                     <LineBlock/>{/*Line Block*/}
                     <View style={styles.block}>
-                        <Item icon={require('../../img/icon/start_icon.png')} title="建议反馈"/>
+                        <Item icon={require('../../img/icon/start_icon.png')} title="建议反馈"
+                              onPress={()=>{
+                                  this.props.navigator.push({
+                                      component: About,
+                                      name:'about',//for android navigator
+                                      title: "建议反馈",
+                                      passProps:{
+                                          url:'https://github.com/wujunchuan/wujunchuan.github.io/issues/new'
+                                      }
+                                  });
+                              }}
+                        />
                         <Item icon={require('../../img/icon/more_icon.png')} title="关于我们" size={{height: 6}}
-                              isLast={true}/>
+                              isLast={true}
+                              onPress={()=>{
+                                  this.props.navigator.push({
+                                      component: About,
+                                      name:'about',//for android navigator
+                                      title: "关于我们",
+                                      passProps:{
+                                          url:'http://www.caogfw.cn'
+                                      }
+                                  });
+                              }}
+                        />
                     </View>
                     <LineBlock/>{/*Line Block*/}
                     <View style={styles.block}>

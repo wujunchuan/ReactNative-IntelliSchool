@@ -30,10 +30,10 @@ export default class SwipeGuide extends Component {
                 loop={false}
                 paginationStyle={{bottom: 60}}>
                 <View style={styles.slide1}>
-                    <Text style={styles.text}>高考不努力</Text>
+                    <Text style={styles.text}>明理精工</Text>
                 </View>
                 <View style={styles.slide2}>
-                    <Text style={styles.text}>理软当兄弟</Text>
+                    <Text style={styles.text}>与时偕行</Text>
                 </View>
                 <View style={styles.slide3}>
                     <Text style={styles.text} onPress={() => {
@@ -58,7 +58,7 @@ export default class SwipeGuide extends Component {
                             title: "学院新闻",
                             navigationBarHidden: true,
                         })
-                    }}>Hey,兄弟!</Text>
+                    }}>Hey,厦理人!</Text>
                 </View>
             </Swiper>
         );
