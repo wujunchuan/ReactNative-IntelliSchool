@@ -13,7 +13,7 @@ import {
     TouchableOpacity,
 } from 'react-native';
 
-export default class Bbs extends Component {
+export default class Library extends Component {
     constructor(props) {
         super(props);
     }

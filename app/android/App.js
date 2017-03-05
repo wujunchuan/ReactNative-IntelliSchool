@@ -25,7 +25,7 @@ import Service from '../component/Service';
 /*新闻详情组件*/
 import NewsDetail from '../component/NewsDetail';
 /*小吐槽组件*/
-import Tucao from '../component/Tucao';
+import Library from '../component/Library';
 /*个人中心组件*/
 import Personal from '../component/Personal';
 /*天气查询模块*/
@@ -85,8 +85,8 @@ export default class App extends Component {
             case 'news':
                 Component = News;
                 break;
-            case 'xiaotucao':
-                Component = Tucao;
+            case 'library':
+                Component = Library;
                 break;
             case 'service':
                 Component = Service;
@@ -159,10 +159,10 @@ export default class App extends Component {
                             },
                             {
                                 icon: 'message',
-                                value: '小吐槽',
-                                active: !this.state.route || this.state.route === 'xiaotucao',
-                                onPress: () => this.onNavPress({route:'xiaotucao',title:'小吐槽'}),
-                                onLongPress: () => this.onNavPress({route:'xiaotucao',title:'小吐槽'})
+                                value: '图书馆',
+                                active: !this.state.route || this.state.route === 'library',
+                                onPress: () => this.onNavPress({route:'library',title:'图书馆'}),
+                                onLongPress: () => this.onNavPress({route:'library',title:'图书馆'})
                             },
                             {
                                 icon: 'search',
