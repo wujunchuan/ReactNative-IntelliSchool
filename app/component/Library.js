@@ -12,17 +12,22 @@ import {
     ScrollView,
     Platform,
     TouchableHighlight,
+    Alert,
 } from 'react-native';
 import GiftedListView from 'react-native-gifted-listview';
 import LibraryItem from './LibraryItem';
 import LibraryDetail from './LibraryDetail';
 import Utils from '../Utils';
+import Spinner from 'react-native-loading-spinner-overlay';
 
 export default class Library extends Component {
     static defaultProps = {};
 
     constructor(props) {
         super(props);
+        this.state = {
+            isLoading: false
+        };
     }
 
     /**
@@ -35,7 +40,6 @@ export default class Library extends Component {
     _onFetch = (page = 1, callback, options) => {
         setTimeout(() => {
             Utils.get(`/library/?page=${page}`, function (data) {
-                console.log(data);
                 let bookList = data.result.data;
                 if (data.pageInfo.nextPage === data.pageInfo.totalPage) {
                     callback(bookList, {
@@ -56,6 +60,40 @@ export default class Library extends Component {
         return (
             <TouchableHighlight
                 underlayColor='#fedeea'
+                onLongPress={()=>{
+                    /*如果已经被借阅,那么久弹出Alert 已被借阅*/
+                    if(rowData.statusId===2){
+                        alert('此书已经被借阅,请稍晚再来');
+                    }else {
+                        /*长按弹出确认框,如果确认借阅的话,就发送请求告知后台*/
+                        Alert.alert(
+                            '确认借阅?',
+                            '你是否确认要借阅此图书?',
+                            [
+                                { text: '取消', onPress: () => {console.log('cancel Pressed')}},
+                                { text: '确认', onPress: () => {
+                                    this.setState = {
+                                        isLoading:false
+                                    };
+                                    /*TODO:这里是uersid 暂时写死*/
+                                    Utils.get(`/library/borrow?id=${rowData.id}&inputBorrower=${44}`,(data)=>{
+                                        rowData = {
+                                            ...rowData,
+                                            statusId: 2,
+                                            statusDesc: '已借出'
+                                        };
+                                        this.setState = {
+                                            isLoading: true
+                                        };
+                                        /*刷新界面*/
+                                        this.refs.listView._refresh();
+                                    });
+                                }}
+                            ]
+                        );
+                    }
+                }}
+
                 onPress={() => {
                     this.props.navigator.push({
                         component: LibraryDetail,
@@ -78,7 +116,9 @@ export default class Library extends Component {
     render() {
         return (
             <View style={styles.container}>
+                <Spinner visible={this.state.isLoading}/>
                 <GiftedListView
+                    ref="listView"
                     onEndReachedThreshold={10}
                     rowView={this._renderRowView}
                     onFetch={this._onFetch}

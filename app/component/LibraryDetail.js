@@ -25,8 +25,7 @@ export default class LibraryDetail extends Component {
         return (
             <View style={styles.tabContent}>
                 <WebView
-                    /*source={{uri:this.props.url}}*/
-                    source={{uri:'http://www.caogfw.cn'}}
+                    source={{uri:this.props.url}}
                     style={styles.webSize}
                     startInLoadingState={true}
                     backButtonEnabled={true}
