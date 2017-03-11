@@ -63,7 +63,7 @@ export default class TabBar extends Component {
                 </Icon.TabBarItemIOS>
 
                 <Icon.TabBarItemIOS
-                    title="小吐槽"
+                    title="藏经阁"
                     iconName="ios-star-outline"
                     selectedIconName="ios-star"
                     selected={this.state.selectedTab === Library_Tab}

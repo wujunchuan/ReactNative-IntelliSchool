@@ -125,7 +125,7 @@ export default class WeatherDetail extends Component {
             this.setState({
                 isLoading: false
             });
-            this.refs.toast.show(`查询失败,请检查卡号是否正确`,1000);
+            this.refs.toast.show(`查询失败,请稍后再试`,1000);
         });
     }
 

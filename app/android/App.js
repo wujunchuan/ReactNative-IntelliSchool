@@ -24,7 +24,7 @@ import News from '../component/News';
 import Service from '../component/Service';
 /*新闻详情组件*/
 import NewsDetail from '../component/NewsDetail';
-/*小吐槽组件*/
+/*图书馆组件*/
 import Library from '../component/Library';
 /*个人中心组件*/
 import Personal from '../component/Personal';
@@ -32,6 +32,8 @@ import Personal from '../component/Personal';
 import Weather from '../component/WeatherDetail';
 /*快递查询模块*/
 import Express from '../component/Express';
+/*豆瓣详情页面模块*/
+import LibraryDetail from '../component/LibraryDetail';
 import {Toolbar as MaterialToolbar, Avatar, COLOR, TYPO, Drawer} from 'react-native-material-design';
 export default class App extends Component {
     static propTypes = {};
@@ -41,7 +43,7 @@ export default class App extends Component {
         this.state = {
             title: '学院新闻',
             route: 'news',
-            isChild:false
+            isChild: false
         };
         StatusBar.setHidden(false);
         let that = this;
@@ -49,20 +51,20 @@ export default class App extends Component {
         BackAndroid.addEventListener('hardwareBackPress', () => {
             let currentRoutes = this.state.navigator.getCurrentRoutes();
             /*
-                如果只剩下1个路由,就显示 *再按一次退出应用*的效果
-                true:不触发exitApp()
-                false:触发exitApp();
-            */
+             如果只剩下1个路由,就显示 *再按一次退出应用*的效果
+             true:不触发exitApp()
+             false:触发exitApp();
+             */
             this.refs['DRAWER'].closeDrawer();
             if (currentRoutes.length === 1) {
-                if(!this.lastBackPressed){
-                    ToastAndroid.show('再按一次退出应用',ToastAndroid.SHORT);
+                if (!this.lastBackPressed) {
+                    ToastAndroid.show('再按一次退出应用', ToastAndroid.SHORT);
                     this.lastBackPressed = Date.now();
                     setTimeout(() => {
                         this.lastBackPressed = null;
                     }, 1500);
-                }else{
-                    if(new Date().getTime() - this.lastBackPressed<1500) {
+                } else {
+                    if (new Date().getTime() - this.lastBackPressed < 1500) {
                         return false;//退出
                     }
                 }
@@ -70,8 +72,8 @@ export default class App extends Component {
             }
             /*更新ToolBar的标题*/
             that.setState({
-                title:currentRoutes[currentRoutes.length-2].title,
-                isChild:currentRoutes[currentRoutes.length-2].isChild||false
+                title: currentRoutes[currentRoutes.length - 2].title,
+                isChild: currentRoutes[currentRoutes.length - 2].isChild || false
             });
             this.state.navigator.pop();
             return true;
@@ -103,6 +105,9 @@ export default class App extends Component {
             case 'weather':
                 Component = Express;
                 break;
+            case 'libraryDetail':
+                Component = LibraryDetail;
+                break;
         }
         /*注意这里,将navigator作为属性props传递给各个场景的组件*/
         return <Component  {...router.passProps} navigator={navigator} router={router}/>;
@@ -121,11 +126,11 @@ export default class App extends Component {
         }
         this.state.navigator.push({
             name: target.route,
-            title:target.title
+            title: target.title
         });
         /*使用state来区分当前激活状态*/
         this.setState({
-            title:target.title,
+            title: target.title,
             route: target.route
         });
         //关闭drawer
@@ -148,35 +153,35 @@ export default class App extends Component {
                     </View>
                 </Drawer.Header>
                 <Drawer.Section
-                    items = {
+                    items={
                         [
                             {
                                 icon: 'home',
                                 value: '学院新闻',
                                 active: !this.state.route || this.state.route === 'news',
-                                onPress: () => this.onNavPress({route:'news',title:'学院新闻'}),
-                                onLongPress: () => this.onNavPress({route:'news',title:'学院新闻'})
+                                onPress: () => this.onNavPress({route: 'news', title: '学院新闻'}),
+                                onLongPress: () => this.onNavPress({route: 'news', title: '学院新闻'})
                             },
                             {
                                 icon: 'message',
                                 value: '图书馆',
                                 active: !this.state.route || this.state.route === 'library',
-                                onPress: () => this.onNavPress({route:'library',title:'图书馆'}),
-                                onLongPress: () => this.onNavPress({route:'library',title:'图书馆'})
+                                onPress: () => this.onNavPress({route: 'library', title: '图书馆'}),
+                                onLongPress: () => this.onNavPress({route: 'library', title: '图书馆'})
                             },
                             {
                                 icon: 'search',
                                 value: '便利服务',
                                 active: !this.state.route || this.state.route === 'service',
-                                onPress: () => this.onNavPress({route:'service',title:'便捷服务'}),
-                                onLongPress: () => this.onNavPress({route:'service',title:'便捷服务'})
+                                onPress: () => this.onNavPress({route: 'service', title: '便捷服务'}),
+                                onLongPress: () => this.onNavPress({route: 'service', title: '便捷服务'})
                             },
                             {
                                 icon: 'settings',
                                 value: '个人中心',
                                 active: !this.state.route || this.state.route === 'user',
-                                onPress: () => this.onNavPress({route:'user',title:'个人中心'}),
-                                onLongPress: () => this.onNavPress({route:'user',title:'个人中心'})
+                                onPress: () => this.onNavPress({route: 'user', title: '个人中心'}),
+                                onLongPress: () => this.onNavPress({route: 'user', title: '个人中心'})
                             }
                         ]
                     }
@@ -192,7 +197,7 @@ export default class App extends Component {
                 renderNavigationView={() => navigationView}/*渲染Drawer的View*/
             >
                 <Navigator
-                    initialRoute={{name: 'news',title:'学院新闻'}}
+                    initialRoute={{name: 'news', title: '学院新闻'}}
                     configureScene={this.configureScense}
                     renderScene={this.renderScene}
                 >
@@ -200,7 +205,7 @@ export default class App extends Component {
                 <MaterialToolbar
                     ref={'TOOLBAR'}
                     title={this.state.title}
-                    icon = {'menu'}
+                    icon={'menu'}
                     onIconPress={() => this.onMenuPress()}
                     //icon={this.state.isChild ? 'keyboard-backspace' : 'menu'}
                     //onIconPress={() => this.state.isChild ? this.state.navigator.pop() : this.onMenuPress()}
