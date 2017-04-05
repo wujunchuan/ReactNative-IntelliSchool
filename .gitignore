@@ -39,3 +39,6 @@ buck-out/
 \.buckd/
 android/app/libs
 android/keystores/debug.keystore
+# Android digitally signed
+android/app/my-release-key.keystore
+
