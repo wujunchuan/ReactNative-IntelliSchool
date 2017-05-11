@@ -42,7 +42,7 @@ export default class NewsItemWithPicture extends Component {
                 </View>
                 <View style={styles.containerRight}>
                     <Image style={styles.img}
-                           source={{uri: 'http://se.xmut.edu.cn'+this.props.rowData.images[0]}}/>
+                           source={{uri: 'http://lorempixel.com/400/400/?'+Math.random()}}/>
                 </View>
             </View>
         );

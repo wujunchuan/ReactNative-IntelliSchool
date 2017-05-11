@@ -41,7 +41,7 @@ export default class Service extends Component {
             ma:'验证码',
             isSecret:false,
             isFirst:true,
-            mapic:'http://api.caogfw.cn:10017/static/images/yanzheng.png'
+            mapic:'http://127.0.0.1:10017/static/images/yanzheng.png'
         };
     }
 

@@ -8,8 +8,10 @@ import {PixelRatio} from 'react-native';
 import Dimensions from 'Dimensions';
 
 export default class Utils {
-    static NODE_SERVER:'http://api.caogfw.cn:10017/api';
-    static SCHOOL_SERVER: 'http://se.xmut.edu.cn';
+    //static NODE_SERVER:'http://api.caogfw.cn:10017/api';
+    //static SCHOOL_SERVER: 'http://se.xmut.edu.cn';
+    static NODE_SERVER:'http://127.0.0.1:10017/api';
+    static SCHOOL_SERVER: 'http://127.0.0.1:8080';
     constructor() {
 
     }
@@ -44,7 +46,7 @@ export default class Utils {
             },
             body: JSON.stringify(data)
         };
-        fetch('http://api.caogfw.cn:10017/api'+url, fetchOptions)
+        fetch('http://127.0.0.1:10017/api'+url, fetchOptions)
             .then((response) => {
                 return response.json();
             })
@@ -64,7 +66,7 @@ export default class Utils {
         const fetchOptions = {
             method:'GET'
         };
-        fetch('http://api.caogfw.cn:10017/api'+url, fetchOptions)
+        fetch('http://127.0.0.1:10017/api'+url, fetchOptions)
             .then((response) => {
                 console.log('[FETCH Success]');
                 return response.json();
