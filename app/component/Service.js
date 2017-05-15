@@ -41,7 +41,7 @@ export default class Service extends Component {
             ma:'验证码',
             isSecret:false,
             isFirst:true,
-            mapic:'http://127.0.0.1:10017/static/images/yanzheng.png'
+            mapic:Platform.OS==='ios'?'http://127.0.0.1:10017/static/images/yanzheng.png':'http://10.0.2.2:10017/static/images/yanzheng.png'
         };
     }
 

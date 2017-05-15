@@ -16,7 +16,8 @@ import {
 import Utils from '../Utils'
 export default class NewsDetail extends Component {
     static defaultProps = {
-        sysId:'20161212100000000765'
+        sysId:'20161212100000000765',
+        schoolPage:Platform.OS==='ios'?'http://127.0.0.1:8080/articleDetail/':'http://10.0.2.2:8080/articleDetail/'
     };
     constructor(props) {
         super(props);
@@ -26,7 +27,7 @@ export default class NewsDetail extends Component {
         return (
             <View style={styles.tabContent}>
                 <WebView
-                    source={{uri:'http://se.xmut.edu.cn/articleDetail/'+this.props.sysId}}
+                    source={{uri:this.props.schoolPage+this.props.sysId}}
                     style={styles.webSize}
                     startInLoadingState={true}
                     backButtonEnabled={true}

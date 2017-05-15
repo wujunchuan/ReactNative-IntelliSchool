@@ -4,7 +4,7 @@
  *
  */
 import React from 'react';
-import {PixelRatio} from 'react-native';
+import {PixelRatio,Platform} from 'react-native';
 import Dimensions from 'Dimensions';
 
 export default class Utils {
@@ -46,7 +46,7 @@ export default class Utils {
             },
             body: JSON.stringify(data)
         };
-        fetch('http://127.0.0.1:10017/api'+url, fetchOptions)
+        fetch(Platform.OS==='ios'?'http://127.0.0.1:10017/api'+url:'http://10.0.2.2:10017/api'+url, fetchOptions)
             .then((response) => {
                 return response.json();
             })
@@ -66,7 +66,7 @@ export default class Utils {
         const fetchOptions = {
             method:'GET'
         };
-        fetch('http://127.0.0.1:10017/api'+url, fetchOptions)
+        fetch(Platform.OS==='ios'?'http://127.0.0.1:10017/api'+url:'http://10.0.2.2:10017/api'+url, fetchOptions)
             .then((response) => {
                 console.log('[FETCH Success]');
                 return response.json();
